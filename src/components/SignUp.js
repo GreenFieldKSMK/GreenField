@@ -1,9 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 
 class SignUp extends React.Component{
 	constructor(props) {
     super(props);
-    this.state = {fullName: '', id: '', email: '', password: '', gender: '', age: '', occupation:'', phoneNumber:''}
+    this.state = {firstname: '', lastname: '', idnumber: '', email: '', password: '', gender: '', age: '', occupation:'', phonenumber:''}
 }
 
 
@@ -11,19 +12,34 @@ class SignUp extends React.Component{
     this.setState({[event.target.name]: event.target.value});
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+	axios.post('http://localhost:4000/user', {firstname: this.state.firstname, lastname: this.state.lastname, idnumber: this.state.idnumber, email: this.state.email, password: this.state.password, gender: this.state.gender, age: this.state.age, occupation: this.state.occupation, phonenumber: this.state.phonenumber})
+	.then((result) => {
+    	console.log(result.data)}
+	)
+	.catch((err) => {
+		console.log(err)
+	})
+  }
+
   render() {
 		return(
 			<div>
 				<h1> Sign up </h1>
 				<hr/>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit.bind(this)}>
 			        <label>
-			          Full name: 
-			          <input type="text" name="fullName" placeholder="i.e. John smith" value={this.state.fullName} onChange={this.handleChange.bind(this)} />
+			          First name: 
+			          <input type="text" name="firstname" placeholder="i.e. John" value={this.state.firstname} onChange={this.handleChange.bind(this)} />
+			        </label>
+					<label>
+			          Last name: 
+			          <input type="text" name="lastname" placeholder="i.e. Smith" value={this.state.lastname} onChange={this.handleChange.bind(this)} />
 			        </label>
 					<label>
 			          ID number: 
-			          <input type="number" name="id" onChange={this.handleChange.bind(this)} />
+			          <input type="number" name="idnumber" onChange={this.handleChange.bind(this)} />
 			        </label>
 					<br/>
 			        <label>
@@ -35,8 +51,9 @@ class SignUp extends React.Component{
 			          <input type="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} />
 			        </label><br/>
 			        <label>
-			          gender: 
-			          <select value={this.state.value} name="gender" onChange={this.handleChange.bind(this)}>
+			          Gender: 
+			          <select value={this.state.gender} name="gender" onChange={this.handleChange.bind(this)}>
+						  <option> </option>
 						  <option value="male">Male</option>
 						  <option value="female">Female</option>
 						  <option value="none"> Prefer not to say </option>
@@ -52,7 +69,7 @@ class SignUp extends React.Component{
 			        </label>
 			        <label>
 			          Phone number: 
-			          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Format: 123-456-7890" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} />
+			          <input type="tel" placeholder="Format: 123-456-7890" name="phonenumber" value={this.state.phonenumber} onChange={this.handleChange.bind(this)} />
 			        </label><br/><br/>
 			        <input type="submit" value="Submit" />
 	      		</form>
