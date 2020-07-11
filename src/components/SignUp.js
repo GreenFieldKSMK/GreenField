@@ -56,4 +56,5 @@ class SignUp extends React.Component{
 	}
 }
 
+ReactDOM.render(<SignUp /> , getElementById('root'))
 export default SignUp;
