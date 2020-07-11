@@ -10,14 +10,14 @@ mongoose.connect('mongodb+srv://Sara:screw.the.world@cluster0-otpuf.mongodb.net/
 
 const signupSchema =  mongoose.Schema({
     firstname: {type: String, required: true},
-    lastname: {type: String, require: true},
-    email: {type: String, require: true},
-    password: {type: String, require: true},
-    idnumber: {type: Number, require: true , unique: true},
-    age: {type: String, require: true},
-    position: {type: String, require: true},
-    phonenumber: {type: Number, require: true},
-    gender: {type: String, require: true},
+    lastname: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+    idnumber: {type: Number, required: true , unique: true},
+    age: {type: String, required: true},
+    position: {type: String, required: true},
+    phonenumber: {type: Number, required: true},
+    gender: {type: String, required: true},
     signin: [Date],
     date: { type: Date, default: Date.now }
 })
@@ -31,6 +31,8 @@ const accountSchema = new mongoose.Schema({
 })
 const signUp = mongoose.model('singUp' , signupSchema)
 const account = mongoose.model('account' , accountSchema)
+
+
 
 // var account1 = new account ({
 //     userid: 123,
