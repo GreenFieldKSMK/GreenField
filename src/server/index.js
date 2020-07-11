@@ -4,9 +4,8 @@ const express = require("express");
 let app = express();
 
 app.use(express.json());
-app.use(express.static("public"));
-var port = process.env.port || 3000
 
+var port = process.env.port || 4000
 
 
 
