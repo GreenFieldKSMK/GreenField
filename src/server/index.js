@@ -30,23 +30,21 @@ app.post('/user',(req,res)=>{
         }
     });
 });
-// app.post('/users',(req,res)=>{
-//     let {userid,total,lastwitdraw,lastdeposite}=req.body;
-//     let accountDoc = new account ({
-//         userid:userid,
-//         total:total,
-//         lastwitdraw:lastwitdraw,
-//         lastdeposite:lastdeposite
-//     });
-//     accountDoc.save((err)=>{
-//         if(err){
-//             console.log("in err")
-//             res.status(500).send(err)
-//         }else{
-//             res.send('saved new account')
-//         }
-//     });
-// })
+app.post('/users',(req,res)=>{
+    let {userid,total,lastwitdraw,lastdeposite}=req.body;
+    let accountDoc = new account ({
+        userid:userid,
+        total:total
+       });
+    accountDoc.save((err)=>{
+        if(err){
+            console.log("in err")
+            res.status(500).send(err)
+        }else{
+            res.send('saved new account')
+        }
+    });
+})
 
 
 
