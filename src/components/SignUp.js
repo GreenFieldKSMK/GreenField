@@ -3,9 +3,9 @@ import React from 'react';
 class SignUp extends React.Component{
 	constructor(props) {
     super(props);
-    this.state = {fullName: 'i.e. John Smith', email: 'i.e. jsmith@gmail.com', password: '', value: '', age: 0, occupation:'', phoneNumber:0}
-  }
-	
+    this.state = {fullName: '', email: '', password: '', gender: '', age: '', occupation:'', phoneNumber:''}
+}
+
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
@@ -19,19 +19,19 @@ class SignUp extends React.Component{
 				<form onSubmit={this.handleSubmit}>
 			        <label>
 			          Full name: 
-			          <input type="text" name="fullName" value={this.state.fullName} onChange={this.handleChange} />
+			          <input type="text" name="fullName" placeholder="i.e. John smith" value={this.state.fullName} onChange={this.handleChange.bind(this)} />
 			        </label><br/>
 			        <label>
 			          Email: 
-			          <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+			          <input type="text" name="email" placeholder="i.e. jsmith@gmail.com" value={this.state.email} onChange={this.handleChange.bind(this)} />
 			        </label>
 			        <label>
 			          Password: 
-			          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+			          <input type="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} />
 			        </label><br/>
 			        <label>
 			          gender: 
-			          <select value={this.state.value} name="value" onChange={this.handleChange}>
+			          <select value={this.state.value} name="gender" onChange={this.handleChange.bind(this)}>
 						  <option value="male">Male</option>
 						  <option value="female">Female</option>
 						  <option value="none"> Prefer not to say </option>
@@ -39,16 +39,16 @@ class SignUp extends React.Component{
 			        </label>
 			        <label>
 			           Age: 
-			        	<input type="number" name="age" value={this.state.age} onChange={this.handleChange} />
+			        	<input type="number" min="18" max="90" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} />
 			        </label>
 			        <label>
 			          Occupation: 
-			          <input type="text" name="occupation" value={this.state.occupation} onChange={this.handleChange} />
+			          <input type="text" name="occupation" value={this.state.occupation} onChange={this.handleChange.bind(this)} />
 			        </label>
 			        <label>
 			          Phone number: 
-			          <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange} />
-			        </label>
+			          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Format: 123-456-7890" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} />
+			        </label><br/><br/>
 			        <input type="submit" value="Submit" />
 	      		</form>
 			</div>
@@ -56,5 +56,4 @@ class SignUp extends React.Component{
 	}
 }
 
-ReactDOM.render(<SignUp /> , getElementById('root'))
 export default SignUp;
