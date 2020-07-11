@@ -3,7 +3,7 @@ import React from 'react';
 class SignUp extends React.Component{
 	constructor(props) {
     super(props);
-    this.state = {fullName: '', email: '', password: '', gender: '', age: '', occupation:'', phoneNumber:''}
+    this.state = {fullName: '', id: '', email: '', password: '', gender: '', age: '', occupation:'', phoneNumber:''}
 }
 
 
@@ -20,7 +20,12 @@ class SignUp extends React.Component{
 			        <label>
 			          Full name: 
 			          <input type="text" name="fullName" placeholder="i.e. John smith" value={this.state.fullName} onChange={this.handleChange.bind(this)} />
-			        </label><br/>
+			        </label>
+					<label>
+			          ID number: 
+			          <input type="number" name="id" onChange={this.handleChange.bind(this)} />
+			        </label>
+					<br/>
 			        <label>
 			          Email: 
 			          <input type="text" name="email" placeholder="i.e. jsmith@gmail.com" value={this.state.email} onChange={this.handleChange.bind(this)} />
