@@ -1,16 +1,18 @@
 const express = require("express");
 const db = require("../database/index");         
 const signUp = db.signUp;
-const account = db.account;                                                    
+const account = db.account;   
+const cors = require('cors');                                                 
 
 
 let app = express();
 var port = process.env.port || 4000
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/user',(req,res)=>{
-    let {firstname,lastname,email,password,idnumber,age,phonenumber,position,gender}=req.body;
+    let {firstname,lastname,email,password,idnumber,age,phonenumber,occupation,gender}=req.body;
     let sigupDoc = new signUp({firstname:firstname,
         lastname:lastname,
         email:email,
@@ -18,15 +20,16 @@ app.post('/user',(req,res)=>{
         idnumber:idnumber,
         age:age,
         phonenumber:phonenumber,
-        position:position,
+        occupation:occupation,
         gender:gender
     });
     sigupDoc.save((err)=>{
         if(err){
-            console.log("in err")
+            console.log(err)
             res.status(500).send(err)
         }else{
             res.send('saved new account')
+            console.log("User saved!")
         }
     });
 });

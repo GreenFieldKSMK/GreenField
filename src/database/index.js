@@ -15,7 +15,7 @@ const signupSchema =  mongoose.Schema({
     password: {type: String, required: true},
     idnumber: {type: Number, required: true , unique: true},
     age: {type: String, required: true},
-    position: {type: String, required: true},
+    occupation: {type: String, required: true},
     phonenumber: {type: Number, required: true},
     gender: {type: String, required: true},
     signin: [Date],
