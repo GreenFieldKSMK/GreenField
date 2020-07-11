@@ -63,3 +63,5 @@ const account = mongoose.model('account' , accountSchema)
 // .catch((err) => {
 //     console.log('failed to save user' , err)
 // })
+module.exports.signUp=signUp;
+module.exports.account=account;
