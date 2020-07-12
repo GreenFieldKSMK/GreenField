@@ -7,7 +7,7 @@ const account = db.account;
 let app = express();
 
 app.use(express.json());
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 app.post('/user',(req,res)=>{
     let {firstname,lastname,email,password,idnumber,age,phonenumber,position,gender}=req.body;
@@ -49,7 +49,7 @@ app.post('/users',(req,res)=>{
 
 
 
-var port = process.env.port || 3000
+var port = process.env.port || 4000;
 
 
 
