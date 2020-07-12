@@ -46,7 +46,7 @@ app.post('/user', (req, res) => {
   });
 });
 app.post('/users', (req, res) => {
-  let { userid, total, lastwitdraw, lastdeposite } = req.body;
+  let { userid, total } = req.body;
   let accountDoc = new account({
     userid: userid,
     total: total,

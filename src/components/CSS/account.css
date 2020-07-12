@@ -1,4 +1,4 @@
-h1 {
+h3 {
   color: #fff;
   text-transform: uppercase;
   font-size: 30px;
@@ -6,8 +6,8 @@ h1 {
   display: block;
   text-align: center;
 }
-.box {
-  margin-top: 84px;
+.box1 {
+  margin-top: 50px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -17,7 +17,7 @@ h1 {
   padding: 70px 100px;
 }
 
-.la {
+label {
   text-align: left;
   top: 0px;
   left: 0px;
@@ -25,7 +25,7 @@ h1 {
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
-.su {
+input {
   border: 0;
   border-bottom: 1px solid #555;
   background: transparent;
@@ -34,7 +34,7 @@ h1 {
   font-size: 16px;
   color: #fff;
 }
-.su:focus {
+input:focus {
   border: none;
   outline: none;
   border-bottom: 1px solid #e74c3c;
@@ -51,14 +51,4 @@ h1 {
   border-radius: 2px;
   cursor: pointer;
   position: relative;
-}
-
-select {
-  border: 0;
-  border-bottom: 1px solid #555;
-  background: transparent;
-  width: 100%;
-  padding: 8px 0 5px 0;
-  font-size: 16px;
-  color: #fff;
 }
