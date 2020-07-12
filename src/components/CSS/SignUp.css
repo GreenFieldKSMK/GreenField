@@ -1,69 +1,69 @@
-h1{
-	color:#fff;	
-	text-transform:uppercase;
-    font-size: 30px;
-    margin: -50px 0 40px 0;
-    display: block;
-    text-align: center;
+h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: -50px 0 40px 0;
+  display: block;
+  text-align: center;
 }
-.box{
-    margin-top: 84px;
-	position:absolute;
-	left:50%;
-	top:50%;
-	transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.89);
-	border-radius:3px;
-	padding:70px 100px;
+.box {
+  margin-top: 84px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.89);
+  border-radius: 3px;
+  padding: 70px 100px;
 }
 /* .input-container{
 	position:relative;
 	margin-bottom:25px;
 } */
-label{
-    text-align: left;
-	/* position:absolute; */
-	top:0px;
-	left:0px;
-	font-size:16px;
-	color:#fff;	
-    /* pointer-event:none; */
-	transition: all 0.5s ease-in-out;
+label {
+  text-align: left;
+  /* position:absolute; */
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: #fff;
+  /* pointer-event:none; */
+  transition: all 0.5s ease-in-out;
 }
-input{ 
-  border:0;
-  border-bottom:1px solid #555;  
-  background:transparent;
-  width:100%;
-  padding:8px 0 5px 0;
-  font-size:16px;
-  color:#fff;
+input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: #fff;
 }
-input:focus{ 
- border:none;	
- outline:none;
- border-bottom:1px solid #e74c3c;	
+input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e74c3c;
 }
-.btn{
-	color:#fff;
-	background-color:#e74c3c;
-	outline: none;
-    border: 0;
-    color: #fff;
-	padding:10px 20px;
-	text-transform:uppercase;
-	margin-top:50px;
-	border-radius:2px;
-	cursor:pointer;
-	position:relative;
+.btn {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
 }
 
-select{
-    border:0;
-    border-bottom:1px solid #555;  
-    background:transparent;
-    width:100%;
-    padding:8px 0 5px 0;
-    font-size:16px;
-    color:#fff;
+select {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: #fff;
 }
