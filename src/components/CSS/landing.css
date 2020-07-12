@@ -1,0 +1,25 @@
+body {
+  background-image: url(../img3.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+}
+.landing {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.first {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  margin: 20px;
+}
