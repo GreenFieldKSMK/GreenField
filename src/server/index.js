@@ -62,6 +62,19 @@ app.post('/users', (req, res) => {
   });
 });
 
+app.get('/user/:email/:password', (req, res) => {
+  var { email, password } = req.params;
+  signUp
+    .find({ email: email, password: password })
+    .then((result) => {
+      res.send(result);
+      console.log('successfully fount the user');
+    })
+    .catch((err) => {
+      console.log('could not find user');
+    });
+});
+
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });

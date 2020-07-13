@@ -148,8 +148,12 @@ class SignUp extends React.Component {
 
           <br />
           <br />
+
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
-            <Link to='/user' className='btn'>
+            <Link
+              to={this.state.firstname !== '' ? '/user' : '#'}
+              className='btn'
+            >
               Next
             </Link>
           </button>
