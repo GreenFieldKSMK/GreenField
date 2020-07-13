@@ -52,6 +52,7 @@ class SignUp extends React.Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label className='la'>First name:</label>
           <input
+            required
             className='su'
             type='text'
             name='firstname'
@@ -63,6 +64,7 @@ class SignUp extends React.Component {
           <br></br>
           <label className='la'>Last name:</label>
           <input
+            required
             className='su'
             type='text'
             name='lastname'

@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Profile from './profile';
+// import Profile from './profile';
 import './CSS/account.css';
+
+var infoarray = [];
 
 class Signin extends React.Component {
   constructor(props) {
@@ -21,8 +23,10 @@ class Signin extends React.Component {
         `http://localhost:4000/user/${this.state.email}/${this.state.password}`
       )
       .then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         var info = result.data;
+        infoarray = info;
+        console.log(infoarray);
         this.setState({
           userinfo: info,
         });

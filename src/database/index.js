@@ -13,6 +13,7 @@ mongoose
   });
 
 const signupSchema = mongoose.Schema({
+  creditcard: { type: Number, required: true, unique: true },
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
   email: { type: String, required: true },
@@ -27,7 +28,7 @@ const signupSchema = mongoose.Schema({
 });
 
 const accountSchema = new mongoose.Schema({
-  userid: { type: Number, required: true, unique: true },
+  creditcard: { type: Number, required: true, unique: true },
   total: { type: Number, required: true },
   lastwitdraw: { type: Number, required: true, default: 0 },
   lastdeposite: { type: Number, required: true, default: 0 },
