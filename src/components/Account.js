@@ -33,7 +33,7 @@ class Account extends React.Component {
     return (
       <div className='box1'>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>User ID</label>
+          <label>Credit Card number</label>
           <input
             type='number'
             name='userid'
@@ -42,7 +42,7 @@ class Account extends React.Component {
           />
           <br />
           <br />
-          <label>Total</label>
+          <label>Balance</label>
           <input
             type='number'
             name='total'
