@@ -3,6 +3,7 @@ const db = require('../database/index');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
+const sendEmail = require('./../components/EmailConf');
 
 ////////////////
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/user', (req, res) => {
+  var credit = Math.floor(Math.random() * 999999999 + 1000000000);
   let {
     firstname,
     lastname,
@@ -26,6 +28,7 @@ app.post('/user', (req, res) => {
     gender,
   } = req.body;
   let sigupDoc = new signUp({
+    creditcard: credit,
     firstname: firstname,
     lastname: lastname,
     email: email,
@@ -43,18 +46,19 @@ app.post('/user', (req, res) => {
     } else {
       res.send('saved new account');
       console.log('User saved!');
+      sendEmail(req.body.email, credit);
     }
   });
 });
 app.post('/users', (req, res) => {
-  let { userid, total } = req.body;
+  let { creditcard, total } = req.body;
   let accountDoc = new account({
-    userid: userid,
+    creditcard: creditcard,
     total: total,
   });
   accountDoc.save((err) => {
     if (err) {
-      console.log('in err');
+      console.log(err);
       res.status(500).send(err);
     } else {
       console.log('account info saved');
@@ -68,17 +72,16 @@ app.post('/users', (req, res) => {
 //     account.find({userid:userid})
 //     .then((result)=>{
 //        res.send(app.post(lastdeposite))
-//     }) 
-    
+//     })
+
 //     .catch((err)=>{
 //         console.log("user not faund")
-//     }) 
+//     })
 // })
-// finde one and update data in mongodb ubdet 
-app.put('/user',(req, res)=>{
-    res.send('Got a PUT request at /user')
-  })
-
+// finde one and update data in mongodb ubdet
+app.put('/user', (req, res) => {
+  res.send('Got a PUT request at /user');
+});
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;
