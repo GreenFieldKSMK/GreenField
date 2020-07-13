@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 function sendEmail(email, number) {
+  console.log('Number:   ' + number);
   nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -16,7 +17,7 @@ function sendEmail(email, number) {
         to: email, // list of receivers
         subject: 'Credit card Number ✔', // Subject line
         text: 'Hello world?', // plain text body
-        html: '<h2>Hello world?</h2><p>This is your credit card number</p>', // html body
+        html: `<h2>Hello world?</h2><p>This is your credit card number : </p> <p>${number}<p/>`, // html body
       },
       (err, info) => {
         if (err) {

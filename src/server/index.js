@@ -16,6 +16,7 @@ app.use(cors());
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
+  console.log(credit);
   let {
     firstname,
     lastname,
