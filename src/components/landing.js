@@ -6,12 +6,17 @@ class Landing extends React.Component {
   render() {
     return (
       <div className='landing'>
-        <h2>Hello there</h2>
+        <h2>ExCahnge</h2>
         <button className='first'>
-          <Link to='/signup'>Sign Up</Link>
+          <Link to='/signup' className='first'>
+            Sign Up
+          </Link>
         </button>
+        <br></br>
         <button className='first'>
-          <Link to='/signin'>Sign In</Link>
+          <Link to='/signin' className='first'>
+            Sign In
+          </Link>
         </button>
       </div>
     );

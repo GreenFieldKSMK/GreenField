@@ -56,6 +56,7 @@ app.post('/users', (req, res) => {
       console.log('in err');
       res.status(500).send(err);
     } else {
+      console.log('account info saved');
       res.send('saved new account');
     }
   });

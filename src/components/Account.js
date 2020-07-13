@@ -1,6 +1,6 @@
 import React from 'react';
 import './CSS/account.css';
-// import axios from 'axios';
+import axios from 'axios';
 
 class Account extends React.Component {
   constructor(props) {
@@ -10,7 +10,20 @@ class Account extends React.Component {
       total: '',
     };
   }
-
+  handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post('http://localhost:4000/users', {
+        userid: this.state.userid,
+        total: this.state.total,
+      })
+      .then((result) => {
+        console.log('account info saved');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -19,8 +32,7 @@ class Account extends React.Component {
   render() {
     return (
       <div className='box1'>
-        <form>
-          <h3>Supply your info</h3>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <label>User ID</label>
           <input
             type='number'
@@ -37,8 +49,8 @@ class Account extends React.Component {
             value={this.state.total}
             onChange={this.handleChange.bind(this)}
           />
+          <button className='btn'>Register</button>
         </form>
-        <button className='btn'>Enter</button>
       </div>
     );
   }
