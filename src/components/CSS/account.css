@@ -7,14 +7,16 @@ h3 {
   text-align: center;
 }
 .box1 {
-  margin-top: 50px;
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.89);
+  transform: translate(-50%, -50%); */
+  background-color: rgba(78, 70, 70, 0.5);
   border-radius: 3px;
   padding: 70px 100px;
+  margin: 319px;
+  margin-top: 146px;
+  margin-bottom: auto;
 }
 
 label {
@@ -22,7 +24,7 @@ label {
   top: 0px;
   left: 0px;
   font-size: 16px;
-  color: #fff;
+  color: rgb(10, 10, 10);
   transition: all 0.5s ease-in-out;
 }
 input {

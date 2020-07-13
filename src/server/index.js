@@ -56,9 +56,23 @@ app.post('/users', (req, res) => {
       console.log('in err');
       res.status(500).send(err);
     } else {
+      console.log('account info saved');
       res.send('saved new account');
     }
   });
+});
+
+app.get('/user/:email/:password', (req, res) => {
+  var { email, password } = req.params;
+  signUp
+    .find({ email: email, password: password })
+    .then((result) => {
+      res.send(result);
+      console.log('successfully fount the user');
+    })
+    .catch((err) => {
+      console.log('could not find user');
+    });
 });
 
 app.listen(port, () => {
