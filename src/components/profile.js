@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 // import axios from 'axios';
-import './CSS/SignUp.css';
+import './CSS/profile.css';
 import { Link } from 'react-router-dom';
+import Change from './ApiReact';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -11,12 +12,24 @@ class Profile extends React.Component {
   render() {
     var userinfo = this.props.userinfo;
     return (
-      <div>
-        <label>name</label>
-        <label>lastname</label>
-        <button>Deposite</button>
-        <button>Withdraw</button>
-      </div>
+      <Fragment>
+        <div>
+          <div className='left'>
+            <span>name</span>
+            <br></br>
+            <span>lastname</span>
+            <br></br>
+            <button className='btn'>Deposite</button>
+            <br></br>
+            <button className='btn'>Withdraw</button>
+            <br></br>
+            <button className='btn'>Display</button>
+          </div>
+          <div className='right'>
+            <Change />
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }
