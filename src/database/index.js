@@ -1,38 +1,39 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://Sara:screw.the.world@cluster0-otpuf.mongodb.net/greenfield?retryWrites=true&w=majority',{ useNewUrlParser: true , useUnifiedTopology: true })
-.then(() => {
-    console.log('db connected')
-})
-.catch((err) => {
-    console.log('failed to connect db' , err)
-})
+mongoose
+  .connect(
+    'mongodb+srv://Sara:screw.the.world@cluster0-otpuf.mongodb.net/greenfield?retryWrites=true&w=majority',
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    console.log('db connected');
+  })
+  .catch((err) => {
+    console.log('failed to connect db', err);
+  });
 
-const signupSchema =  mongoose.Schema({
-    firstname: {type: String, required: true},
-    lastname: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true},
-    idnumber: {type: Number, required: true , unique: true},
-    age: {type: String, required: true},
-    position: {type: String, required: true},
-    phonenumber: {type: Number, required: true},
-    gender: {type: String, required: true},
-    signin: [Date],
-    date: { type: Date, default: Date.now }
-})
+const signupSchema = mongoose.Schema({
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  idnumber: { type: Number, required: true, unique: true },
+  age: { type: String, required: true },
+  occupation: { type: String, required: true },
+  phonenumber: { type: Number, required: true },
+  gender: { type: String, required: true },
+  signin: [Date],
+  date: { type: Date, default: Date.now },
+});
 
 const accountSchema = new mongoose.Schema({
-    userid: {type: Number, required: true, unique: true},
-    total: {type: Number , required: true},
-    lastwitdraw: {type: Number, required: true, default: 0},
-    lastdeposite: {type: Number, required: true, default: 0}
-
-})
-const signUp = mongoose.model('singUp' , signupSchema)
-const account = mongoose.model('account' , accountSchema)
-
-
+  userid: { type: Number, required: true, unique: true },
+  total: { type: Number, required: true },
+  lastwitdraw: { type: Number, required: true, default: 0 },
+  lastdeposite: { type: Number, required: true, default: 0 },
+});
+const signUp = mongoose.model('singUp', signupSchema);
+const account = mongoose.model('account', accountSchema);
 
 // var account1 = new account ({
 //     userid: 123,
@@ -65,5 +66,5 @@ const account = mongoose.model('account' , accountSchema)
 // .catch((err) => {
 //     console.log('failed to save user' , err)
 // })
-module.exports.signUp=signUp;
-module.exports.account=account;
+module.exports.signUp = signUp;
+module.exports.account = account;
