@@ -58,10 +58,19 @@ class Signin extends React.Component {
             onChange={this.handleChange.bind(this)}
           ></input>
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
-            <Link to='/profile'>Sign In</Link>
+            <Link
+              to={
+                this.state.email !== '' && this.state.password !== ''
+                  ? '/profile'
+                  : '#'
+              }
+              className='btn'
+            >
+              Sign In
+            </Link>
           </button>
         </div>
-        <Profile userinfo={this.state.userinfo} />;
+        {/* <Profile userinfo={this.state.userinfo} /> */}
       </Fragment>
     );
   }

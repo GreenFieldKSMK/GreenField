@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './CSS/api.css';
 
 class Change extends React.Component {
   constructor(props) {
@@ -38,9 +39,9 @@ class Change extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <button>Refreh</button>
+          <h3 className='currency'>Currency Change</h3>
           <p>USD To YER : {this.state.USDYER}</p>
           <br />
           <p>USD To YEN : {this.state.USDYEN}</p>
