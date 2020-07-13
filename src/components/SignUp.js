@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './CSS/SignUp.css';
+import { Link } from 'react-router-dom';
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -48,11 +49,10 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className='box'>
-        <h1> Sign up </h1>
-        <br></br>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>First name:</label>
+          <label className='la'>First name:</label>
           <input
+            className='su'
             type='text'
             name='firstname'
             placeholder='i.e. John'
@@ -61,8 +61,9 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>Last name:</label>
+          <label className='la'>Last name:</label>
           <input
+            className='su'
             type='text'
             name='lastname'
             placeholder='i.e. Smith'
@@ -71,16 +72,18 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>ID number:</label>
+          <label className='la'>ID number:</label>
           <input
+            className='su'
             type='number'
             name='idnumber'
             onChange={this.handleChange.bind(this)}
           />
 
           <br></br>
-          <label>Email:</label>
+          <label className='la'>Email:</label>
           <input
+            className='su'
             type='text'
             name='email'
             placeholder='i.e. jsmith@gmail.com'
@@ -89,8 +92,9 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>Password:</label>
+          <label className='la'>Password:</label>
           <input
+            className='su'
             type='password'
             name='password'
             value={this.state.password}
@@ -98,7 +102,7 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>Gender:</label>
+          <label className='la'>Gender:</label>
           <select
             value={this.state.gender}
             name='gender'
@@ -110,8 +114,9 @@ class SignUp extends React.Component {
             <option value='none'> Prefer not to say </option>
           </select>
           <br></br>
-          <label>Age:</label>
+          <label className='la'>Age:</label>
           <input
+            className='su'
             type='number'
             min='18'
             max='90'
@@ -121,8 +126,9 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>Occupation:</label>
+          <label className='la'>Occupation:</label>
           <input
+            className='su'
             type='text'
             name='occupation'
             value={this.state.occupation}
@@ -130,10 +136,11 @@ class SignUp extends React.Component {
           />
 
           <br></br>
-          <label>Phone number:</label>
+          <label className='la'>Phone number:</label>
           <input
+            className='su'
             type='tel'
-            placeholder='Format: 123-456-7890'
+            placeholder='1234567890'
             name='phonenumber'
             value={this.state.phonenumber}
             onChange={this.handleChange.bind(this)}
@@ -141,7 +148,15 @@ class SignUp extends React.Component {
 
           <br />
           <br />
-          <input className='btn' type='submit' value='Submit' />
+
+          <button className='btn' onClick={this.handleSubmit.bind(this)}>
+            <Link
+              to={this.state.firstname !== '' ? '/user' : '#'}
+              className='btn'
+            >
+              Next
+            </Link>
+          </button>
         </form>
       </div>
     );
