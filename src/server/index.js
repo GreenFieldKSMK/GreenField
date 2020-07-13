@@ -10,6 +10,7 @@ let app = express();
 var port = process.env.port || 4000;
 
 app.use(express.json());
+//app.use(express.static("public"));
 app.use(cors());
 
 app.post('/user', (req, res) => {
@@ -61,6 +62,23 @@ app.post('/users', (req, res) => {
     }
   });
 });
+// app.put('/userss/:userid',(req,res)=>{
+//     let userid = req.params.userid
+//     let lastdeposite = req.params.lastdeposite
+//     account.find({userid:userid})
+//     .then((result)=>{
+//        res.send(app.post(lastdeposite))
+//     }) 
+    
+//     .catch((err)=>{
+//         console.log("user not faund")
+//     }) 
+// })
+// finde one and update data in mongodb ubdet 
+app.put('/user',(req, res)=>{
+    res.send('Got a PUT request at /user')
+  })
+
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;
