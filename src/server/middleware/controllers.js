@@ -67,3 +67,27 @@ exports.updateOne = function (req, res) {
       res.status(500).send(err);
     });
 };
+
+exports.retrieve = function (req, res) {
+  signUp1
+    .find({})
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+
+exports.retrieveOne = function (req, res) {
+  var whatyouwhont = req.params.whatyouwhont;
+    account
+      .findOne({ whatyouwhont })
+      .then((result) => {
+        res.status(200).send(result);
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+      });
+};
