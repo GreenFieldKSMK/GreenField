@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import './CSS/withdraw.css';
 
 class Withdrawl extends React.Component {
   state = { withdraw: '' };
@@ -17,17 +18,19 @@ class Withdrawl extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h3> Withdrawl </h3>
+      <div className='box2'>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label> Please enter the amount of your withdrawl: </label>
+          <label>Credit card number</label>
+          <input type='number' />
+          <br></br>
+          <label> The amount of your withdrawl: </label>
           <input
             type='number'
             name='withdraw'
             value={this.state.withdraw}
             onChange={this.handleChange.bind(this)}
           ></input>
-          <input type='submit' value='Withdraw' />
+          <button className='btn'>Confirm</button>
         </form>
       </div>
     );

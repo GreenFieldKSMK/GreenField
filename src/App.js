@@ -7,7 +7,8 @@ import Signin from './components/SignIn';
 import Account from './components/Account';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
-import Change from './components/ApiReact';
+import Withdraw from './components/Withdraw';
+import Diposit from './components/Deposit';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route exact path='/signin' component={Signin} />
           <Route exact path='/user' component={Account} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/withdraw' component={Withdraw} />
+          <Route exact path='/deposit' component={Diposit} />
         </section>
       </div>
     </Router>
