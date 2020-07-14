@@ -1,6 +1,6 @@
 const signUp1 = require('./../../database/index');
 const account = require('./../../database/index');
-
+//////////////////
 exports.signUp = (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
   let {
@@ -37,7 +37,7 @@ exports.signUp = (req, res) => {
     }
   });
 };
-
+///////////////////
 exports.account = (req, res) => {
   let { creditcard, total } = req.body;
   let accountDoc = new account({
@@ -54,7 +54,7 @@ exports.account = (req, res) => {
     }
   });
 };
-
+//////////////////
 exports.updateOne = function (req, res) {
   var userid = req.params.userid;
   var data = req.body;
@@ -67,7 +67,7 @@ exports.updateOne = function (req, res) {
       res.status(500).send(err);
     });
 };
-
+//////////////////////
 exports.retrieve = function (req, res) {
   signUp1
     .find({})
@@ -78,16 +78,15 @@ exports.retrieve = function (req, res) {
       res.status(500).send(err);
     });
 };
-
-
+/////////////////
 exports.retrieveOne = function (req, res) {
   var whatyouwhont = req.params.whatyouwhont;
-    account
-      .findOne({ whatyouwhont })
-      .then((result) => {
-        res.status(200).send(result);
-      })
-      .catch((err) => {
-        res.status(500).send(err);
-      });
+  account
+    .findOne({ whatyouwhont })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 };

@@ -12,7 +12,7 @@ let app = express();
 var port = process.env.port || 4000;
 
 app.use(express.json());
-//app.use(express.static("public"));
+//////////////////////app.use(express.static("public"));
 app.use(cors());
 
 app.use('/user', router);
