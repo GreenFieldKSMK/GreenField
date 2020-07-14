@@ -19,6 +19,7 @@ class Account extends React.Component {
       })
       .then((result) => {
         console.log('account info saved');
+        alert(result.data);
       })
       .catch((err) => {
         console.log(err);

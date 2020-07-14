@@ -57,13 +57,25 @@ app.post('/users', (req, res) => {
     creditcard: creditcard,
     total: total,
   });
-  accountDoc
-    .save()
+  signUp
+    .find({ creditcard: creditcard })
     .then((result) => {
-      console.log('account successfully saved', result);
+      if (result.length !== 0) {
+        accountDoc
+          .save()
+          .then((result) => {
+            console.log('account successfully saved');
+            res.send('Welcome');
+          })
+          .catch((err) => {
+            console.log('failed to save acc info', err);
+          });
+      } else {
+        res.send('Please enter your credit card number');
+      }
     })
     .catch((err) => {
-      console.log('failed to save acc info', err);
+      res.send('failed to find user');
     });
 });
 
