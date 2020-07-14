@@ -1,19 +1,71 @@
 const express = require('express');
 const axios = require('axios');
 const db = require('../database/index');
+const bodyParser = require('body-parser');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-
+const router = require('./middleware/router');
 ////////////////
 
 let app = express();
 var port = process.env.port || 4000;
 
 app.use(express.json());
+app.use(bodyParser.json());
 //app.use(express.static("public"));
 app.use(cors());
+
+app.get('/transfer', (req, res) => {
+  let state = 0;
+  let finalTotal;
+  let recieverBalance;
+  let recieverCreditcard;
+  account.findOne({
+    creditcard: req.body.creditcard
+  }, function (err, result) {
+    if (result) {
+      console.log("Sender's obj", result);
+      state++;
+      if (result.total >= req.body.amount) {
+        finalTotal = result.total;
+        state++;
+      } else {
+        console.log("You do not have sufficient balance")
+      }
+    } else {
+      console.log("Invalid creditcard")
+    }
+  });
+  signUp.findOne({
+    idnumber: req.body.id
+  }, function (err, result) {
+    if (result) {
+      recieverCreditcard = result.creditcard;
+      account.findOne({ creditcard: result.creditcard }, function (err, outcome) {
+        if (outcome) {
+          recieverBalance = outcome.total;
+        }
+      })
+      console.log("reciever's obj", result);
+      state++;
+    } else {
+      console.log("Invalid reciever")
+    }
+  });
+  if (state === 3) {
+    account.findOneAndUpdate({ creditcard: req.body.creditcard }, { total: finalTotal - req.body.amount })
+    account.findOneAndUpdate({ creditcard: recieverCreditcard }, { total: recieverBalance + req.body.amount })
+    res.send("Success")
+  }
+  console.log('===================>', 'Hello from the server side!')
+})
+//////////////////////app.use(express.static("public"));
+app.use(cors());
+
+app.use('/user', router);
+app.use('/user/:id', router);
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);

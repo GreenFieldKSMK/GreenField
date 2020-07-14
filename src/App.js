@@ -7,8 +7,13 @@ import Signin from './components/SignIn';
 import Account from './components/Account';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
+<<<<<<< HEAD
 import Withdraw from './components/Withdraw';
 import Diposit from './components/Deposit';
+=======
+import Transfer from './components/transfer';
+import Change from './components/ApiReact';
+>>>>>>> a0f209ef16b32118fe0b082560e2f9a647444842
 
 function App() {
   return (
