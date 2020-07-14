@@ -1,4 +1,4 @@
-const signUp = require('./../../database/index');
+const signUp1 = require('./../../database/index');
 const account = require('./../../database/index');
 
 exports.signUp = (req, res) => {
@@ -14,7 +14,7 @@ exports.signUp = (req, res) => {
     occupation,
     gender,
   } = req.body;
-  let sigupDoc = new signUp({
+  let sigupDoc = new signUp1({
     creditcard: credit,
     firstname: firstname,
     lastname: lastname,
