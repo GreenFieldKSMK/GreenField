@@ -7,6 +7,7 @@ import Signin from './components/SignIn';
 import Account from './components/Account';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
+import Change from './components/ApiReact';
 
 function App() {
   return (
