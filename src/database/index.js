@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose
   .connect(
     'mongodb+srv://Sara:screw.the.world@cluster0-otpuf.mongodb.net/greenfield?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
   )
   .then(() => {
     console.log('db connected');
@@ -28,7 +28,7 @@ const signupSchema = mongoose.Schema({
 });
 
 const accountSchema = new mongoose.Schema({
-  creditcard: { type: Number, required: true, unique: true },
+  creditcard: { type: Number },
   total: { type: Number, required: true },
   lastwitdraw: { type: Number, required: true, default: 0 },
   lastdeposite: { type: Number, required: true, default: 0 },

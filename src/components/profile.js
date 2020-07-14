@@ -8,6 +8,12 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    const { userinfo } = this.props.location.state;
+    console.log(userinfo);
+    console.log(Array.isArray(userinfo));
+    console.log(userinfo['0']);
+  }
 
   render() {
     var userinfo = this.props.userinfo;

@@ -12,7 +12,7 @@ class Signin extends React.Component {
     this.state = {
       email: '',
       password: '',
-      userinfo: undefined,
+      userinfo: [],
     };
   }
 
@@ -63,10 +63,15 @@ class Signin extends React.Component {
           ></input>
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
             <Link
-              to={
-                this.state.email !== '' && this.state.password !== ''
-                  ? '/profile'
-                  : '#'
+              to={{
+                pathname:
+                  this.state.email !== '' && this.state.password !== ''
+                    ? '/profile'
+                    : '',
+                state: {
+                  userinfo: this.state.userinfo
+                }
+              }
               }
               className='btn'
             >

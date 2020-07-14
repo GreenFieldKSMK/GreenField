@@ -57,29 +57,16 @@ app.post('/users', (req, res) => {
     creditcard: creditcard,
     total: total,
   });
-  accountDoc.save((err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    } else {
-      console.log('account info saved');
-      res.send('saved new account');
-    }
-  });
+  accountDoc
+    .save()
+    .then((result) => {
+      console.log('account successfully saved', result);
+    })
+    .catch((err) => {
+      console.log('failed to save acc info', err);
+    });
 });
-// app.put('/userss/:userid',(req,res)=>{
-//     let userid = req.params.userid
-//     let lastdeposite = req.params.lastdeposite
-//     account.find({userid:userid})
-//     .then((result)=>{
-//        res.send(app.post(lastdeposite))
-//     })
 
-//     .catch((err)=>{
-//         console.log("user not faund")
-//     })
-// })
-// finde one and update data in mongodb ubdet
 app.put('/user', (req, res) => {
   res.send('Got a PUT request at /user');
 });
