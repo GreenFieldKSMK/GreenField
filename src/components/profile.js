@@ -47,7 +47,11 @@ class Profile extends React.Component {
               </Link>
             </button>
             <br></br>
-            <button id='transfer'>Transfer</button>
+            <button id='transfer'>
+              <Link to='/transfer' className='btn'>
+                Transfer
+              </Link>
+            </button>
             <br></br>
             <button id='display'>Display</button>
           </div>
