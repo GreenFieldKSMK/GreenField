@@ -12,6 +12,7 @@ class Change extends React.Component {
       USDYEN: '',
       USDRYB: '',
       USDGBP: '',
+      USDILS: '',
     };
   }
 
@@ -22,15 +23,15 @@ class Change extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(this.state.api)
+      .get('/api/change')
       .then((result) => {
         this.setState({
-          USDYER: result.data.quotes.USDYER,
-          USDYEN: result.data.quotes.USDJPY,
-          USDRYB: result.data.quotes.USDRUB,
-          USDGBP: result.data.quotes.USDGBP,
+          USDYER: result.data.USDYER,
+          USDYEN: result.data.USDJPY,
+          USDRYB: result.data.USDRUB,
+          USDGBP: result.data.USDGBP,
+          USDILS: result.data.USDILS,
         });
-        console.log('Last updata');
       })
       .catch((err) => {
         console.log('Error', err);
@@ -50,6 +51,8 @@ class Change extends React.Component {
           <br />
           <p>USD To GBP : {this.state.USDGBP}</p>
           <br />
+          <p>USD To ILS : {this.state.USDILS}</p>
+          <button>Refresh</button>
         </form>
       </div>
     );

@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const db = require('../database/index');
 const signUp = db.signUp;
 const account = db.account;
@@ -93,6 +94,19 @@ app.get('/user/:email/:password', (req, res) => {
     })
     .catch((err) => {
       console.log('could not find user');
+    });
+});
+
+app.get('/api/change', (req, res) => {
+  axios
+    .get(
+      'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
+    )
+    .then((result) => {
+      res.send(result.data.quotes);
+    })
+    .catch((err) => {
+      console.log('Error', err);
     });
 });
 
