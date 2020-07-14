@@ -7,6 +7,8 @@ import Signin from './components/SignIn';
 import Account from './components/Account';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
+import Withdraw from './components/Withdraw';
+import Diposit from './components/Deposit';
 import Transfer from './components/transfer';
 import Change from './components/ApiReact';
 
@@ -21,6 +23,9 @@ function App() {
           <Route exact path='/signin' component={Signin} />
           <Route exact path='/user' component={Account} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/withdraw' component={Withdraw} />
+          <Route exact path='/deposit' component={Diposit} />
+          <Route exact path='/transfer' component={Transfer} />
         </section>
       </div>
     </Router>

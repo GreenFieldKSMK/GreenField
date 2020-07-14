@@ -163,6 +163,22 @@ app.get('/api/change', (req, res) => {
     });
 });
 
+app.put('/withdraw', (req, res) => {
+  var { creditcard, number } = req.body;
+  // var oldTotal;
+  account
+    .find({ creditcard })
+    .then((result) => {
+      console.log(result[0]);
+      console.log('credit found');
+      var newTotal = result[0].total - number;
+      result[0].lastwitdraw = result[0].lastwitdraw + number;
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
