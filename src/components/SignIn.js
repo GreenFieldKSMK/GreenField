@@ -12,7 +12,7 @@ class Signin extends React.Component {
     this.state = {
       email: '',
       password: '',
-      userinfo: undefined,
+      userinfo: [],
     };
   }
 
@@ -25,11 +25,15 @@ class Signin extends React.Component {
       .then((result) => {
         // console.log(result.data);
         var info = result.data;
-        infoarray = info;
-        console.log(infoarray);
-        this.setState({
-          userinfo: info,
+        info.map((Element, index) => {
+          this.state.userinfo.push(Element.firstname);
+          this.state.userinfo.push(Element.lastname);
         });
+
+        // this.setState({
+        //   userinfo: info,
+        // });
+        // console.log(this.state.userinfo);
       })
       .catch((err) => {
         console.log(err);
@@ -63,11 +67,15 @@ class Signin extends React.Component {
           ></input>
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
             <Link
-              to={
-                this.state.email !== '' && this.state.password !== ''
-                  ? '/profile'
-                  : '#'
-              }
+              to={{
+                pathname:
+                  this.state.email !== '' && this.state.password !== ''
+                    ? '/profile'
+                    : '',
+                state: {
+                  userinfo: this.state.userinfo,
+                },
+              }}
               className='btn'
             >
               Sign In

@@ -1,12 +1,16 @@
-const singupRouter = require('express').Router();
-const controllers = require('./controllers')
-// let{createOne,createOne,updateOne}=require('./controllers');
-.route('/user')
-.post(controllers,{createOneSignUp,createOneAccount})
-.get(controllers,retrieve)
-.route('/user/:id')
+const signupRouter = require('express').Router();
+const controllers = require('./controllers');
+///////////////
+signupRouter
+  .route('/user')
+  .post(controllers.signUp)
 
-.put(controllers,updateOne);
+  .get(controllers.retrieve);
+///////////////
+signupRouter
+  .route('/user/:id')
+  .post(controllers.account)
+  .put(controllers.updateOne)
+  .get(controllers.retrieveOne);
 
-
-module.exports =singupRouter;
+module.exports = signupRouter;

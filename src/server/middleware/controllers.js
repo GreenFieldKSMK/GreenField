@@ -1,55 +1,92 @@
-const signUp  = require('./../../database/index');
+const signUp1 = require('./../../database/index');
 const account = require('./../../database/index');
-
-
-exports.createOneSignUp = function (req, res) {
-   var data=req.body;
-    const signUpDoc = new signUp(data);
-     signUpDoc.save().then((result)=>{
-       res.json(result)
-     })
-     .catch((err)=>{
-         console.log('errrr',err)
-       res.status(500)
-     })
+//////////////////
+exports.signUp = (req, res) => {
+  var credit = Math.floor(Math.random() * 999999999 + 1000000000);
+  let {
+    firstname,
+    lastname,
+    email,
+    password,
+    idnumber,
+    age,
+    phonenumber,
+    occupation,
+    gender,
+  } = req.body;
+  let sigupDoc = new signUp1({
+    creditcard: credit,
+    firstname: firstname,
+    lastname: lastname,
+    email: email,
+    password: password,
+    idnumber: idnumber,
+    age: age,
+    phonenumber: phonenumber,
+    occupation: occupation,
+    gender: gender,
+  });
+  sigupDoc.save((err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send('saved new account');
+      console.log('User saved!');
+      sendEmail(req.body.email, credit);
+    }
+  });
 };
-
-exports.createOneAccount = function (req, res) {
-    var data=req.body;
-     const accountDoc = new account(data);
-      accountDoc.save().then((result)=>{
-        res.json(result)
-      })
-      .catch((err)=>{
-          console.log('errrr',err)
-        res.status(500)
-      })
- };
-
-
-// var query = {'username': req.user.username};
-// req.newData.username = req.user.username;
-
-// MyModel.findOneAndUpdate(query, req.newData, {upsert: true}, function(err, doc) {
-//     if (err) return res.send(500, {error: err});
-//     return res.send('Succesfully saved.');
-// });
-
-
+///////////////////
+exports.account = (req, res) => {
+  let { creditcard, total } = req.body;
+  let accountDoc = new account({
+    creditcard: creditcard,
+    total: total,
+  });
+  accountDoc.save((err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      console.log('account info saved');
+      res.send('saved new account');
+    }
+  });
+};
+//////////////////
 exports.updateOne = function (req, res) {
-    account.findOneAndUpdate(req.params.name, { $set: req.body }, (err,account)=> {
-      if (err) return res.send(err);
-      res.send("account udpated.");
+  var userid = req.params.userid;
+  var data = req.body;
+  account
+    .updateOne({ userid }, data)
+    .then((result) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
     });
-  };
-
-
-  exports.retrieve = function (req, res) {
-    signUpDoc.find({}, function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
+};
+//////////////////////
+exports.retrieve = function (req, res) {
+  signUp1
+    .find({})
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
     });
-  };
+};
+/////////////////
+exports.retrieveOne = function (req, res) {
+  var whatyouwhont = req.params.whatyouwhont;
+  account
+    .findOne({ whatyouwhont })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};

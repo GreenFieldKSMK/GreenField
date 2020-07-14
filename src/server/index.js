@@ -1,11 +1,12 @@
 const express = require('express');
+const axios = require('axios');
 const db = require('../database/index');
 const bodyParser = require('body-parser');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-
+const router = require('./middleware/router');
 ////////////////
 
 let app = express();
@@ -60,6 +61,11 @@ app.get('/transfer', (req, res) => {
   }
   console.log('===================>', 'Hello from the server side!')
 })
+//////////////////////app.use(express.static("public"));
+app.use(cors());
+
+app.use('/user', router);
+app.use('/user/:id', router);
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
@@ -104,29 +110,29 @@ app.post('/users', (req, res) => {
     creditcard: creditcard,
     total: total,
   });
-  accountDoc.save((err) => {
-    if (err) {
+  signUp
+    .find({ creditcard: creditcard })
+    .then((result) => {
+      if (result.length !== 0) {
+        accountDoc
+          .save()
+          .then((result) => {
+            console.log('account successfully saved');
+            res.send({ number: creditcard, message: 'welcome' });
+          })
+          .catch((err) => {
+            console.log('failed to save acc info', err);
+          });
+      } else {
+        res.send({ message: 'Please enter your credit card number' });
+      }
+    })
+    .catch((err) => {
       console.log(err);
-      res.status(500).send(err);
-    } else {
-      console.log('account info saved');
-      res.send('saved new account');
-    }
-  });
+      res.send('failed to find user');
+    });
 });
-// app.put('/userss/:userid',(req,res)=>{
-//     let userid = req.params.userid
-//     let lastdeposite = req.params.lastdeposite
-//     account.find({userid:userid})
-//     .then((result)=>{
-//        res.send(app.post(lastdeposite))
-//     })
 
-//     .catch((err)=>{
-//         console.log("user not faund")
-//     })
-// })
-// finde one and update data in mongodb ubdet
 app.put('/user', (req, res) => {
   res.send('Got a PUT request at /user');
 });
@@ -141,6 +147,19 @@ app.get('/user/:email/:password', (req, res) => {
     })
     .catch((err) => {
       console.log('could not find user');
+    });
+});
+
+app.get('/api/change', (req, res) => {
+  axios
+    .get(
+      'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
+    )
+    .then((result) => {
+      res.send(result.data.quotes);
+    })
+    .catch((err) => {
+      console.log('Error', err);
     });
 });
 

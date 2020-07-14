@@ -8,6 +8,7 @@ import Account from './components/Account';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
 import Transfer from './components/transfer';
+import Change from './components/ApiReact';
 
 function App() {
   return (
