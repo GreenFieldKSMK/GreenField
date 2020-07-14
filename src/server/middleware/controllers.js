@@ -55,6 +55,7 @@ exports.account = (req, res) => {
   });
 };
 
+
 exports.updateOne = function (req, res) {
   var userid = req.params.userid;
   var data = req.body;

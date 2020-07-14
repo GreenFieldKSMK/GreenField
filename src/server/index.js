@@ -75,9 +75,9 @@ app.post('/users', (req, res) => {
 //     }) 
 // })
 // finde one and update data in mongodb ubdet 
-app.put('/user',(req, res)=>{
-    res.send('Got a PUT request at /user')
-  })
+// app.put('/user',(req, res)=>{
+//     res.send('Got a PUT request at /user')
+//   })
 
 
 app.get('/user/:email/:password', (req, res) => {
