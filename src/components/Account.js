@@ -6,7 +6,7 @@ class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userid: '',
+      creditcard: '',
       total: '',
     };
   }
@@ -14,7 +14,7 @@ class Account extends React.Component {
     e.preventDefault();
     axios
       .post('http://localhost:4000/users', {
-        userid: this.state.userid,
+        creditcard: this.state.creditcard,
         total: this.state.total,
       })
       .then((result) => {
@@ -36,8 +36,8 @@ class Account extends React.Component {
           <label>Credit Card number</label>
           <input
             type='number'
-            name='userid'
-            value={this.state.userid}
+            name='creditcard'
+            value={this.state.creditcard}
             onChange={this.handleChange.bind(this)}
           />
           <br />
