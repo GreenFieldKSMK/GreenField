@@ -65,16 +65,17 @@ app.post('/users', (req, res) => {
           .save()
           .then((result) => {
             console.log('account successfully saved');
-            res.send('Welcome');
+            res.send({ number: creditcard, message: 'welcome' });
           })
           .catch((err) => {
             console.log('failed to save acc info', err);
           });
       } else {
-        res.send('Please enter your credit card number');
+        res.send({ message: 'Please enter your credit card number' });
       }
     })
     .catch((err) => {
+      console.log(err);
       res.send('failed to find user');
     });
 });
