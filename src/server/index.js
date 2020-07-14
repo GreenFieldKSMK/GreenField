@@ -5,15 +5,18 @@ const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-
+const router = require('./middleware/router');
 ////////////////
 
 let app = express();
 var port = process.env.port || 4000;
 
 app.use(express.json());
-//app.use(express.static("public"));
+//////////////////////app.use(express.static("public"));
 app.use(cors());
+
+app.use('/user', router);
+app.use('/user/:id', router);
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
