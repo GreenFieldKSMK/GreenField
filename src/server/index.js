@@ -3,6 +3,7 @@ const db = require('../database/index');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
+const sendEmail = require('./../components/EmailConf');
 
 ////////////////
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/user', (req, res) => {
+  var credit = Math.floor(Math.random() * 999999999 + 1000000000);
+  console.log(credit);
   let {
     firstname,
     lastname,
@@ -26,6 +29,7 @@ app.post('/user', (req, res) => {
     gender,
   } = req.body;
   let sigupDoc = new signUp({
+    creditcard: credit,
     firstname: firstname,
     lastname: lastname,
     email: email,
@@ -43,42 +47,41 @@ app.post('/user', (req, res) => {
     } else {
       res.send('saved new account');
       console.log('User saved!');
+      sendEmail(req.body.email, credit);
     }
   });
 });
 app.post('/users', (req, res) => {
-  let { userid, total } = req.body;
+  let { creditcard, total } = req.body;
   let accountDoc = new account({
-    userid: userid,
+    creditcard: creditcard,
     total: total,
   });
-  accountDoc.save((err) => {
-    if (err) {
-      console.log('in err');
-      res.status(500).send(err);
-    } else {
-      console.log('account info saved');
-      res.send('saved new account');
-    }
-  });
+  signUp
+    .find({ creditcard: creditcard })
+    .then((result) => {
+      if (result.length !== 0) {
+        accountDoc
+          .save()
+          .then((result) => {
+            console.log('account successfully saved');
+            res.send('Welcome');
+          })
+          .catch((err) => {
+            console.log('failed to save acc info', err);
+          });
+      } else {
+        res.send('Please enter your credit card number');
+      }
+    })
+    .catch((err) => {
+      res.send('failed to find user');
+    });
 });
-// app.put('/userss/:userid',(req,res)=>{
-//     let userid = req.params.userid
-//     let lastdeposite = req.params.lastdeposite
-//     account.find({userid:userid})
-//     .then((result)=>{
-//        res.send(app.post(lastdeposite))
-//     }) 
-    
-//     .catch((err)=>{
-//         console.log("user not faund")
-//     }) 
-// })
-// finde one and update data in mongodb ubdet 
-// app.put('/user',(req, res)=>{
-//     res.send('Got a PUT request at /user')
-//   })
 
+app.put('/user', (req, res) => {
+  res.send('Got a PUT request at /user');
+});
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;

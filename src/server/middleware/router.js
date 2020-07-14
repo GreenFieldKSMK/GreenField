@@ -4,7 +4,7 @@ const controllers = require('./controllers');
 singupRouter
   .route('/user')
   .post(controllers, { signUp, account })
-  ///////////////git
+  ///////////////
   .route('/user/:id')
   .put(controllers, updateOne);
 
