@@ -25,11 +25,15 @@ class Signin extends React.Component {
       .then((result) => {
         // console.log(result.data);
         var info = result.data;
-        infoarray = info;
-        console.log(infoarray);
-        this.setState({
-          userinfo: info,
+        info.map((Element, index) => {
+          this.state.userinfo.push(Element.firstname);
+          this.state.userinfo.push(Element.lastname);
         });
+
+        // this.setState({
+        //   userinfo: info,
+        // });
+        // console.log(this.state.userinfo);
       })
       .catch((err) => {
         console.log(err);
@@ -69,10 +73,9 @@ class Signin extends React.Component {
                     ? '/profile'
                     : '',
                 state: {
-                  userinfo: this.state.userinfo
-                }
-              }
-              }
+                  userinfo: this.state.userinfo,
+                },
+              }}
               className='btn'
             >
               Sign In

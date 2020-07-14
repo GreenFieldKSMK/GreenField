@@ -1,25 +1,34 @@
 import React from 'react';
 import './CSS/account.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      number: 0,
       creditcard: '',
       total: '',
     };
   }
-  handleSubmit(e) {
+
+  async handleSubmit(e) {
     e.preventDefault();
-    axios
+    await axios
       .post('http://localhost:4000/users', {
         creditcard: this.state.creditcard,
         total: this.state.total,
       })
       .then((result) => {
-        console.log('account info saved');
-        alert(result.data);
+        // console.log('account info saved');
+        var { number, message } = result.data;
+        this.setState({
+          number: number,
+        });
+        console.log(result.data);
+        console.log(this.state.number);
+        alert(message);
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +59,19 @@ class Account extends React.Component {
             value={this.state.total}
             onChange={this.handleChange.bind(this)}
           />
-          <button className='btn'>Register</button>
+          <button className='btn' onClick={this.handleSubmit.bind(this)}>
+            <Link
+              to={
+                this.state.creditcard === this.state.number &&
+                this.state.total !== ''
+                  ? '/profile'
+                  : ''
+              }
+              className='btn'
+            >
+              Register
+            </Link>
+          </button>
         </form>
       </div>
     );
