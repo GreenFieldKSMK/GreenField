@@ -22,7 +22,6 @@ app.use(cors());
 ///////////////////////////////////////////////////////////////////
 
 app.get('/transfer', (req, res) => {
-  let { creditcard } = req.body;
   let state = 0;
   let finalTotal;
   let recieverBalance;
@@ -160,11 +159,22 @@ app.get('/user/:email/:password', (req, res) => {
   signUp
     .find({ email: email, password: password })
     .then((result) => {
-      res.send(result);
-      console.log('successfully fount the user');
+      if (result.length !== 0) {
+        res.send({
+          firstname: result[0].firstname,
+          lastname: result[0].lastname,
+          age: result[0].age,
+          date: result[0].date,
+          email: result[0].email,
+          password: result[0].password,
+          message: 'You can now enter',
+        });
+      } else {
+        res.send({ message: 'Incorrect Email/ Password, please re-enter' });
+      }
     })
     .catch((err) => {
-      console.log('could not find user');
+      console.log('error in signing in', err);
     });
 });
 
@@ -216,7 +226,7 @@ app.put('/withdraw', (req, res) => {
           account
             .update(
               { creditcard: creditcard },
-              { $set: { total: newTotal, lastwitdraw: withdraw } },
+              { $set: { total: newTotal, lastwitdraw: number } },
               { upsert: true }
             )
             .then((result) => {
@@ -253,7 +263,7 @@ app.put('/deposit', (req, res) => {
         account
           .update(
             { creditcard: creditcard },
-            { $set: { total: newTotal, lastdeposite: deposit } },
+            { $set: { total: newTotal, lastdeposite: number } },
             { upsert: true }
           )
           .then((result) => {
@@ -277,22 +287,3 @@ app.put('/deposit', (req, res) => {
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
-
-
-// account.findOne({
-//   creditcard: req.body.creditcard
-// }, function (err, result) {
-//   console.log(result)
-//   if (result) {
-//     console.log("Sender's obj", result);
-//     state++;
-//     if (result[0].total >= req.body.amount) {
-//       finalTotal = result.total;
-//       state++;
-//     } else {
-//       console.log("You do not have sufficient balance")
-//     }
-//   } else {
-//     console.log("Invalid creditcard")
-//   }
-// });
