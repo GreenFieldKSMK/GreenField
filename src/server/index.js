@@ -18,26 +18,19 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/transfer', (req, res) => {
+  let { creditcard } = req.body;
   let state = 0;
   let finalTotal;
   let recieverBalance;
   let recieverCreditcard;
-  account.findOne({
-    creditcard: req.body.creditcard
-  }, function (err, result) {
-    if (result) {
-      console.log("Sender's obj", result);
-      state++;
-      if (result.total >= req.body.amount) {
-        finalTotal = result.total;
-        state++;
-      } else {
-        console.log("You do not have sufficient balance")
-      }
-    } else {
-      console.log("Invalid creditcard")
-    }
-  });
+  account.find({ creditcard: creditcard })
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
   signUp.findOne({
     idnumber: req.body.id
   }, function (err, result) {
@@ -182,3 +175,22 @@ app.put('/withdraw', (req, res) => {
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
+
+
+// account.findOne({
+//   creditcard: req.body.creditcard
+// }, function (err, result) {
+//   console.log(result)
+//   if (result) {
+//     console.log("Sender's obj", result);
+//     state++;
+//     if (result[0].total >= req.body.amount) {
+//       finalTotal = result.total;
+//       state++;
+//     } else {
+//       console.log("You do not have sufficient balance")
+//     }
+//   } else {
+//     console.log("Invalid creditcard")
+//   }
+// });
