@@ -35,11 +35,25 @@ class Profile extends React.Component {
                 <li key={index}>{Element} </li>
               ))}
             </ul>
-            <button className='btn'>Deposite</button>
+            <button id='deposit'>
+              <Link to='/deposit' className='btn'>
+                Deposit
+              </Link>
+            </button>
             <br></br>
-            <button className='btn'>Withdraw</button>
+            <button className='btn'>
+              <Link to='/withdraw' className='btn'>
+                Withdraw
+              </Link>
+            </button>
             <br></br>
-            <button className='btn'>Display</button>
+            <button id='transfer'>
+              <Link to='/transfer' className='btn'>
+                Transfer
+              </Link>
+            </button>
+            <br></br>
+            <button id='display'>Display</button>
           </div>
           <div className='right'>
             <Change />

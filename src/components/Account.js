@@ -2,6 +2,7 @@ import React from 'react';
 import './CSS/account.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Account extends React.Component {
   constructor(props) {
@@ -40,6 +41,9 @@ class Account extends React.Component {
     });
   }
   render() {
+    if (this.state.number === this.state.creditcard) {
+      return <Redirect to='/profile' />;
+    }
     return (
       <div className='box1'>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -59,8 +63,8 @@ class Account extends React.Component {
             value={this.state.total}
             onChange={this.handleChange.bind(this)}
           />
-          <button className='btn' onClick={this.handleSubmit.bind(this)}>
-            <Link
+          <button className='btn' onClick={this.render.bind(this)}>
+            {/* <Link
               to={
                 this.state.creditcard === this.state.number &&
                 this.state.total !== ''
@@ -68,9 +72,9 @@ class Account extends React.Component {
                   : ''
               }
               className='btn'
-            >
-              Register
-            </Link>
+            > */}
+            Register
+            {/* </Link> */}
           </button>
         </form>
       </div>

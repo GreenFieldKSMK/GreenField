@@ -19,9 +19,6 @@ span {
   border-radius: 2px;
   cursor: pointer;
   position: relative;
-}
-
-.link {
   text-decoration: none;
 }
 
@@ -36,4 +33,50 @@ span {
   float: right;
   padding: 20px;
   margin: 50px;
+}
+#display {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 49px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+#deposit {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 27px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  margin-right: 20px;
+}
+#transfer {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 41px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  margin-right: 20px;
 }
