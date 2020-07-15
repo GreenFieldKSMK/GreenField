@@ -1,4 +1,4 @@
-const signupRouter = require('express').Router();
+const signupRouter = require('react-router-dom').Router();
 const controllers = require('./controllers');
 ///////////////
 signupRouter

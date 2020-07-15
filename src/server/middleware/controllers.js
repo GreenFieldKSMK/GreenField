@@ -1,6 +1,7 @@
 const signUp1 = require('./../../database/index');
 const account = require('./../../database/index');
 //////////////////
+
 exports.signUp = (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
   let {
@@ -28,10 +29,11 @@ exports.signUp = (req, res) => {
   });
   sigupDoc.save((err) => {
     if (err) {
-      console.log(err);
+      console.log('in func post sigupDoc');
+      console.log("err",err);
       res.status(500).send(err);
     } else {
-      res.send('saved new account');
+      res.send('saved  account');
       console.log('User saved!');
       sendEmail(req.body.email, credit);
     }
@@ -46,7 +48,8 @@ exports.account = (req, res) => {
   });
   accountDoc.save((err) => {
     if (err) {
-      console.log(err);
+      console.log('in func post account');
+      console.log("err",err);
       res.status(500).send(err);
     } else {
       console.log('account info saved');
@@ -61,9 +64,11 @@ exports.updateOne = function (req, res) {
   account
     .updateOne({ userid }, data)
     .then((result) => {
+      console.log('in func put one');
       res.status(200).send(data);
     })
     .catch((err) => {
+       console.log('in err put');
       res.status(500).send(err);
     });
 };
@@ -72,9 +77,11 @@ exports.retrieve = function (req, res) {
   signUp1
     .find({})
     .then((result) => {
+      console.log('in func get all');
       res.status(200).send(result);
     })
     .catch((err) => {
+      console.log('in err get');
       res.status(500).send(err);
     });
 };
@@ -84,9 +91,11 @@ exports.retrieveOne = function (req, res) {
   account
     .findOne({ whatyouwhont })
     .then((result) => {
+      console.log("in func get find 1")
       res.status(200).send(result);
     })
     .catch((err) => {
+      console.log('in err get find 1');
       res.status(500).send(err);
     });
 };

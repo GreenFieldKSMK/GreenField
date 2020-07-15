@@ -5,7 +5,7 @@ const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-const router = require('./middleware/router');
+//const router = require('./middleware/router');
 ////////////////
 
 let app = express();
@@ -15,8 +15,8 @@ app.use(express.json());
 //////////////////////app.use(express.static("public"));
 app.use(cors());
 
-app.use('/user', router);
-app.use('/user/:id', router);
+// app.use('/user', router);
+// app.use('/user/:id', router);
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
@@ -84,9 +84,9 @@ app.post('/users', (req, res) => {
     });
 });
 
-app.put('/user', (req, res) => {
-  res.send('Got a PUT request at /user');
-});
+// app.put('/user', (req, res) => {
+//   res.send('Got a PUT request at /user');
+// });
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;
@@ -111,6 +111,21 @@ app.get('/api/change', (req, res) => {
     })
     .catch((err) => {
       console.log('Error', err);
+    });
+});
+
+app.put('/user', (req, res) => {
+  var email = req.params.email;
+  var data = req.body;
+  signUp
+    .updateOne({ email }, data)
+    .then((result) => {
+      console.log('in put');
+      res.status(200).send('save new data')//,data);
+    })
+    .catch((err) => {
+      console.log('in err');
+      res.status(500).send(err);
     });
 });
 
