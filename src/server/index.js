@@ -6,7 +6,7 @@ const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-const router = require('./middleware/router');
+//const router = require('./middleware/router');
 ////////////////
 
 let app = express();
@@ -172,7 +172,7 @@ app.get('/user/:email/:password', (req, res) => {
 app.get('/api/change', (req, res) => {
   axios
     .get(
-      'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
+      'https://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
     )
     .then((result) => {
       res.send(result.data.quotes);
@@ -183,6 +183,23 @@ app.get('/api/change', (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////
+
+app.put('/user', (req, res) => {
+  var email = req.params.email;
+  var data = req.body;
+  signUp
+    .updateOne({ email }, data)
+    .then((result) => {
+      console.log('in put');
+      res.status(200).send('save new data'); //,data);
+    })
+    .catch((err) => {
+      console.log('in err');
+      res.status(500).send(err);
+    });
+});
+
+//////////////////////////////////////////////////////////////////
 
 app.put('/withdraw', (req, res) => {
   var { creditcard, number } = req.body;
