@@ -14,58 +14,74 @@ var port = process.env.port || 4000;
 
 app.use(express.json());
 app.use(bodyParser.json());
-//app.use(express.static("public"));
 app.use(cors());
+
+app.use('/user', router);
+app.use('/user/:id', router);
+
+///////////////////////////////////////////////////////////////////
 
 app.get('/transfer', (req, res) => {
   let state = 0;
   let finalTotal;
   let recieverBalance;
   let recieverCreditcard;
-  account.findOne({
-    creditcard: req.body.creditcard
-  }, function (err, result) {
-    if (result) {
-      console.log("Sender's obj", result);
-      state++;
-      if (result.total >= req.body.amount) {
-        finalTotal = result.total;
+  account.findOne(
+    {
+      creditcard: req.body.creditcard,
+    },
+    function (err, result) {
+      if (result) {
+        console.log("Sender's obj", result);
+        state++;
+        if (result.total >= req.body.amount) {
+          finalTotal = result.total;
+          state++;
+        } else {
+          console.log('You do not have sufficient balance');
+        }
+      } else {
+        console.log('Invalid creditcard');
+      }
+    }
+  );
+  signUp.findOne(
+    {
+      idnumber: req.body.id,
+    },
+    function (err, result) {
+      if (result) {
+        recieverCreditcard = result.creditcard;
+        account.findOne({ creditcard: result.creditcard }, function (
+          err,
+          outcome
+        ) {
+          if (outcome) {
+            recieverBalance = outcome.total;
+          }
+        });
+        console.log("reciever's obj", result);
         state++;
       } else {
-        console.log("You do not have sufficient balance")
+        console.log('Invalid reciever');
       }
-    } else {
-      console.log("Invalid creditcard")
     }
-  });
-  signUp.findOne({
-    idnumber: req.body.id
-  }, function (err, result) {
-    if (result) {
-      recieverCreditcard = result.creditcard;
-      account.findOne({ creditcard: result.creditcard }, function (err, outcome) {
-        if (outcome) {
-          recieverBalance = outcome.total;
-        }
-      })
-      console.log("reciever's obj", result);
-      state++;
-    } else {
-      console.log("Invalid reciever")
-    }
-  });
+  );
   if (state === 3) {
-    account.findOneAndUpdate({ creditcard: req.body.creditcard }, { total: finalTotal - req.body.amount })
-    account.findOneAndUpdate({ creditcard: recieverCreditcard }, { total: recieverBalance + req.body.amount })
-    res.send("Success")
+    account.findOneAndUpdate(
+      { creditcard: req.body.creditcard },
+      { total: finalTotal - req.body.amount }
+    );
+    account.findOneAndUpdate(
+      { creditcard: recieverCreditcard },
+      { total: recieverBalance + req.body.amount }
+    );
+    res.send('Success');
   }
-  console.log('===================>', 'Hello from the server side!')
-})
-//////////////////////app.use(express.static("public"));
-app.use(cors());
+  console.log('===================>', 'Hello from the server side!');
+});
 
-app.use('/user', router);
-app.use('/user/:id', router);
+///////////////////////////////////////////////////////////////////////////
 
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
@@ -104,6 +120,9 @@ app.post('/user', (req, res) => {
     }
   });
 });
+
+//////////////////////////////////////////////////////////////////////////
+
 app.post('/users', (req, res) => {
   let { creditcard, total } = req.body;
   let accountDoc = new account({
@@ -133,9 +152,7 @@ app.post('/users', (req, res) => {
     });
 });
 
-app.put('/user', (req, res) => {
-  res.send('Got a PUT request at /user');
-});
+//////////////////////////////////////////////////////////////////////////////
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;
@@ -150,6 +167,8 @@ app.get('/user/:email/:password', (req, res) => {
     });
 });
 
+////////////////////////////////////////////////////////////////
+
 app.get('/api/change', (req, res) => {
   axios
     .get(
@@ -163,21 +182,82 @@ app.get('/api/change', (req, res) => {
     });
 });
 
+////////////////////////////////////////////////////////////////
+
 app.put('/withdraw', (req, res) => {
   var { creditcard, number } = req.body;
-  // var oldTotal;
+
   account
     .find({ creditcard })
     .then((result) => {
-      console.log(result[0]);
-      console.log('credit found');
-      var newTotal = result[0].total - number;
-      result[0].lastwitdraw = result[0].lastwitdraw + number;
+      console.log('credit found for update');
+      if (result.length !== 0) {
+        if (result[0].total - number > 0) {
+          var newTotal = result[0].total - number;
+          var withdraw = result[0].lastwitdraw + number;
+          account
+            .update(
+              { creditcard: creditcard },
+              { $set: { total: newTotal, lastwitdraw: withdraw } },
+              { upsert: true }
+            )
+            .then((result) => {
+              res.send(`Successfully Withdrew ${number}`);
+              console.log('info updated');
+            })
+            .catch((err) => {
+              console.log('cannot update ==========>', err);
+            });
+        } else {
+          res.send(`Insufficiant Expenses! Cannot withdraw ${number}`);
+        }
+      } else {
+        res.send('Cannot Find the number provided');
+      }
     })
     .catch((err) => {
-      res.send(err);
+      console.log('failed to find credit to update', err);
     });
 });
+
+/////////////////////////////////////////////////////////////////////
+
+app.put('/deposit', (req, res) => {
+  var { creditcard, number } = req.body;
+
+  account
+    .find({ creditcard })
+    .then((result) => {
+      console.log('credit found for update');
+      if (result.length !== 0) {
+        console.log(result[0].total);
+        console.log(number);
+        var newTotal = result[0].total + number;
+        var deposit = result[0].lastdeposite + number;
+        console.log(newTotal);
+        account
+          .update(
+            { creditcard: creditcard },
+            { $set: { total: newTotal, lastdeposite: deposit } },
+            { upsert: true }
+          )
+          .then((result) => {
+            res.send(`Successfully deposited ${number}`);
+            console.log('info updated');
+          })
+          .catch((err) => {
+            console.log('cannot update ==========>', err);
+          });
+      } else {
+        res.send('Cannot Find the number provided');
+      }
+    })
+    .catch((err) => {
+      console.log('failed to find credit to update', err);
+    });
+});
+
+///////////////////////////////////////////////////////////////////////
 
 app.listen(port, () => {
   console.log(`listening on ${port}`);
