@@ -23,7 +23,7 @@ class Change extends React.Component {
   }
   componentDidMount() {
     axios
-      .get('/api/change')
+      .get('http://localhost:4000/api/change')
       .then((result) => {
         this.setState({
           USDYER: result.data.USDYER,
