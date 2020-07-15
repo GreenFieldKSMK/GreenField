@@ -279,22 +279,3 @@ app.put('/deposit', (req, res) => {
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
-
-
-// account.findOne({
-//   creditcard: req.body.creditcard
-// }, function (err, result) {
-//   console.log(result)
-//   if (result) {
-//     console.log("Sender's obj", result);
-//     state++;
-//     if (result[0].total >= req.body.amount) {
-//       finalTotal = result.total;
-//       state++;
-//     } else {
-//       console.log("You do not have sufficient balance")
-//     }
-//   } else {
-//     console.log("Invalid creditcard")
-//   }
-// });
