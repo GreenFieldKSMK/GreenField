@@ -17,9 +17,10 @@ class Withdrawl extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var number = Number(this.state.number);
     axios
       .put('http://localhost:4000/withdraw', {
-        number: this.state.number,
+        number: number,
         creditcard: this.state.creditcard,
       })
       .then((response) => {

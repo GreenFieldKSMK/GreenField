@@ -17,9 +17,10 @@ class Deposit extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var number = Number(this.state.number);
     axios
       .put('http://localhost:4000/deposit', {
-        number: this.state.number,
+        number: number,
         creditcard: this.state.creditcard,
       })
       .then((response) => {

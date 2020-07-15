@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/user', router);
-app.use('/user/:id', router);
+// app.use('/user', router);
+// app.use('/user/:id', router);
 
 ///////////////////////////////////////////////////////////////////
 
@@ -172,7 +172,7 @@ app.get('/user/:email/:password', (req, res) => {
 app.get('/api/change', (req, res) => {
   axios
     .get(
-      'https://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
+      'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
     )
     .then((result) => {
       res.send(result.data.quotes);
@@ -247,11 +247,8 @@ app.put('/deposit', (req, res) => {
     .then((result) => {
       console.log('credit found for update');
       if (result.length !== 0) {
-        console.log(result[0].total);
-        console.log(number);
         var newTotal = result[0].total + number;
         var deposit = result[0].lastdeposite + number;
-        console.log(newTotal);
         account
           .update(
             { creditcard: creditcard },
