@@ -11,7 +11,6 @@ class Transfer extends React.Component {
     }
     handleSubmit(event) {
         let value = this.state.amount;
-
         axios
             .get('http://localhost:3000/transfer', {
                 params: {
