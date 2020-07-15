@@ -162,11 +162,22 @@ app.get('/user/:email/:password', (req, res) => {
   signUp
     .find({ email: email, password: password })
     .then((result) => {
-      res.send(result);
-      console.log('successfully fount the user');
+      if (result.length !== 0) {
+        res.send({
+          firstname: result[0].firstname,
+          lastname: result[0].lastname,
+          age: result[0].age,
+          date: result[0].date,
+          email: result[0].email,
+          password: result[0].password,
+          message: 'You can now enter',
+        });
+      } else {
+        res.send({ message: 'Incorrect Email/ Password, please re-enter' });
+      }
     })
     .catch((err) => {
-      console.log('could not find user');
+      console.log('error in signing in', err);
     });
 });
 
