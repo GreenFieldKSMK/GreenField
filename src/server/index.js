@@ -13,73 +13,76 @@ let app = express();
 var port = process.env.port || 4000;
 
 app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
-// app.use('/user', router);
-// app.use('/user/:id', router);
-
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 app.get('/transfer', (req, res) => {
-  let state = 0;
-  let finalTotal;
-  let recieverBalance;
-  let recieverCreditcard;
-  account.findOne(
-    {
-      creditcard: req.body.creditcard,
-    },
-    function (err, result) {
-      if (result) {
-        console.log("Sender's obj", result);
-        state++;
-        if (result.total >= req.body.amount) {
-          finalTotal = result.total;
-          state++;
-        } else {
-          console.log('You do not have sufficient balance');
-        }
+  let { creditcard, id, amount } = req.query;
+  amount = Number(amount);
+  let reciever;
+  let sender;
+  let recieverAcc;
+  let senderAcc;
+  account.findOne({ creditcard })
+    .then(result => {
+      if (result !== null) {
+        sender = result.total
+        signUp.findOne({ idnumber: id })
+          .then(result => {
+            if (result !== null) {
+              let credit = result.creditcard;
+              account.findOne({ creditcard: credit })
+                .then(result => {
+                  if (result !== null) {
+                    recieverAcc = result;
+                    reciever = result.total;
+                    if (sender - amount > 0) {
+                      sender = sender - amount;
+                      reciever = reciever + amount;
+                      account.updateOne({ creditcard }, { $set: { total: sender } })
+                        .then(result => {
+                          let creditNum = recieverAcc.creditcard
+                          account.updateOne({ creditcard: creditNum }, { $set: { total: reciever } })
+                            .then(result => {
+                              res.send(`Successfully transfered ${amount}`);
+                            })
+                            .catch(err => {
+                              console.log(err, "Reciever update")
+                            })
+
+                        })
+                        .catch(err => {
+                          console.log(err, "Sender update")
+                        })
+                    } else {
+                      res.send("insufficient balance!")
+                    }
+                  } else {
+                    res.send("Cannot find reciever's credit card")
+                  }
+                })
+                .catch(err => {
+                  console.log(err, "Failed to find reciever!")
+                })
+            } else {
+              res.send("Reciever ID doesn't exist")
+            }
+          })
+          .catch(err => {
+            console.log(err, "Failed to find reciever ID!")
+          })
       } else {
-        console.log('Invalid creditcard');
+        res.send("Invalid sender credit card!")
       }
-    }
-  );
-  signUp.findOne(
-    {
-      idnumber: req.body.id,
-    },
-    function (err, result) {
-      if (result) {
-        recieverCreditcard = result.creditcard;
-        account.findOne({ creditcard: result.creditcard }, function (
-          err,
-          outcome
-        ) {
-          if (outcome) {
-            recieverBalance = outcome.total;
-          }
-        });
-        console.log("reciever's obj", result);
-        state++;
-      } else {
-        console.log('Invalid reciever');
-      }
-    }
-  );
-  if (state === 3) {
-    account.findOneAndUpdate(
-      { creditcard: req.body.creditcard },
-      { total: finalTotal - req.body.amount }
-    );
-    account.findOneAndUpdate(
-      { creditcard: recieverCreditcard },
-      { total: recieverBalance + req.body.amount }
-    );
-    res.send('Success');
-  }
-  console.log('===================>', 'Hello from the server side!');
-});
+    })
+    .catch(err => {
+      console.log(err, "Failed to reach sender credit card!")
+    })
+})
+
+
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -159,22 +162,11 @@ app.get('/user/:email/:password', (req, res) => {
   signUp
     .find({ email: email, password: password })
     .then((result) => {
-      if (result.length !== 0) {
-        res.send({
-          firstname: result[0].firstname,
-          lastname: result[0].lastname,
-          age: result[0].age,
-          date: result[0].date,
-          email: result[0].email,
-          password: result[0].password,
-          message: 'You can now enter',
-        });
-      } else {
-        res.send({ message: 'Incorrect Email/ Password, please re-enter' });
-      }
+      res.send(result);
+      console.log('successfully fount the user');
     })
     .catch((err) => {
-      console.log('error in signing in', err);
+      console.log('could not find user');
     });
 });
 
@@ -226,7 +218,7 @@ app.put('/withdraw', (req, res) => {
           account
             .update(
               { creditcard: creditcard },
-              { $set: { total: newTotal, lastwitdraw: number } },
+              { $set: { total: newTotal, lastwitdraw: withdraw } },
               { upsert: true }
             )
             .then((result) => {
@@ -263,7 +255,7 @@ app.put('/deposit', (req, res) => {
         account
           .update(
             { creditcard: creditcard },
-            { $set: { total: newTotal, lastdeposite: number } },
+            { $set: { total: newTotal, lastdeposite: deposit } },
             { upsert: true }
           )
           .then((result) => {
@@ -287,3 +279,22 @@ app.put('/deposit', (req, res) => {
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
+
+
+// account.findOne({
+//   creditcard: req.body.creditcard
+// }, function (err, result) {
+//   console.log(result)
+//   if (result) {
+//     console.log("Sender's obj", result);
+//     state++;
+//     if (result[0].total >= req.body.amount) {
+//       finalTotal = result.total;
+//       state++;
+//     } else {
+//       console.log("You do not have sufficient balance")
+//     }
+//   } else {
+//     console.log("Invalid creditcard")
+//   }
+// });
