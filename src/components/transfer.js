@@ -12,17 +12,20 @@ class Transfer extends React.Component {
     handleSubmit(event) {
         let value = this.state.amount;
         axios
-            .get('/transfer', {
-                creditcard: this.state.sender,
-                id: this.state.reciever,
-                amount: this.state.amount,
+            .get('http://localhost:3000/transfer', {
+                params: {
+                    creditcard: this.state.sender,
+                    id: this.state.reciever,
+                    amount: this.state.amount
+                }
             })
             .then(function (response) {
-                console.log(response);
-                alert(`Successfully transfered  ${value}$ `);
-                console.log('Success');
+                let msg = response.data;
+                alert(msg)
+                console.log('Request succeeded');
             })
             .catch(function (error) {
+                alert('Something went wrong!')
                 console.log(error);
             });
 
