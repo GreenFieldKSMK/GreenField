@@ -9,6 +9,14 @@
 .box2 {
   background-color: rgba(78, 70, 70, 0.5);
   border-radius: 3px;
+  padding: 92px 100px;
+  margin: 15px 320px;
+  margin-top: 144px;
+  margin-bottom: auto;
+}
+.box3 {
+  background-color: rgba(78, 70, 70, 0.5);
+  border-radius: 3px;
   padding: 70px 100px;
   margin: 15px 320px;
   margin-top: 101px;
