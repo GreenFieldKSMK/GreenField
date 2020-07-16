@@ -16,7 +16,7 @@ const signupSchema = mongoose.Schema({
   creditcard: { type: Number, required: true, unique: true },
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   idnumber: { type: Number, required: true, unique: true },
   age: { type: String, required: true },

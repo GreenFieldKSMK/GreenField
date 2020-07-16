@@ -61,7 +61,7 @@ class Profile extends React.Component {
                 <li className='in'>
                   Fisrt Name: &nbsp; {this.state.firstname}
                 </li>
-                <li className='in'>LAst Name: &nbsp; {this.state.lastname}</li>
+                <li className='in'>Last Name: &nbsp; {this.state.lastname}</li>
                 <li className='in'>Age: &nbsp; {this.state.age}</li>
                 <li className='in'>Joining Date: &nbsp; {this.state.date}</li>
               </ul>
