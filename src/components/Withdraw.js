@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import './CSS/withdraw.css';
 import axios from 'axios';
 

@@ -1,8 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import axios from 'axios';
 import './CSS/withdraw.css';
-let style = { width: 200, textAlign: 'left', marginLeft: 0 };
 
 class Transfer extends React.Component {
     state = { sender: '', reciever: '', amount: '' };

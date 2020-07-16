@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Landing from './components/landing';
 import SignUp from './components/SignUp';
@@ -10,7 +10,6 @@ import Profile from './components/profile';
 import Withdraw from './components/Withdraw';
 import Diposit from './components/Deposit';
 import Transfer from './components/transfer';
-import Change from './components/ApiReact';
 
 function App() {
   return (
@@ -33,8 +32,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <SignUp />
-<hr />
-<Account /> */
-}

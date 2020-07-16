@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './CSS/account.css';
-
-var infoarray = [];
 
 class Signin extends React.Component {
   constructor(props) {

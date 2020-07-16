@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const db = require('../database/index');
-const bodyParser = require('body-parser');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
@@ -24,7 +23,6 @@ app.get('/transfer', (req, res) => {
   let reciever;
   let sender;
   let recieverAcc;
-  let senderAcc;
   account
     .findOne({ creditcard })
     .then((result) => {
