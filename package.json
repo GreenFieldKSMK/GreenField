@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon src/server/index.js",
-    "heroku-postbuild": "NPM_CONGIG_PRODUCTION=false npm install && npm run build"
+    "server": "node src/server/index.js",
+    "heroku-postbuild": "NPM_CONGIG_PRODUCTION=false npm install && npm run build && npm run server"
   },
   "eslintConfig": {
     "extends": "react-app"
