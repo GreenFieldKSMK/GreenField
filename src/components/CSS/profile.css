@@ -20,6 +20,7 @@ span {
   cursor: pointer;
   position: relative;
   text-decoration: none;
+  margin-right: 20px;
 }
 
 .left {
@@ -33,6 +34,7 @@ span {
   float: right;
   padding: 20px;
   margin: 50px;
+  text-align: center;
 }
 #display {
   color: #fff;
@@ -40,7 +42,7 @@ span {
   outline: none;
   border: 0;
   color: #fff;
-  padding: 10px 49px;
+  padding: 10px 30px;
   text-transform: uppercase;
   margin-top: 50px;
   border-radius: 2px;
@@ -71,7 +73,7 @@ span {
   outline: none;
   border: 0;
   color: #fff;
-  padding: 10px 41px;
+  padding: 10px 21px;
   text-transform: uppercase;
   margin-top: 50px;
   border-radius: 2px;
@@ -79,4 +81,36 @@ span {
   position: relative;
   text-decoration: none;
   margin-right: 20px;
+}
+
+.para {
+  /* background-color: rgba(78, 70, 70, 0.2); */
+  border-radius: 3px;
+  padding: 30px 50px;
+  margin-top: 100px;
+  margin-bottom: auto;
+  font-family: 'Bitter', serif;
+  font-weight: bold;
+  color: rgb(185, 168, 168);
+}
+
+.pardiv {
+  background-color: rgba(78, 70, 70, 0.2);
+  border-radius: 3px;
+  padding: 30px 50px;
+  margin-top: 100px;
+  margin-bottom: auto;
+  font-family: 'Bitter', serif;
+  font-weight: bold;
+  color: rgb(185, 168, 168);
+}
+.in {
+  display: block;
+  color: rgb(185, 168, 168);
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: 'Bitter', serif;
+  font-weight: 500;
 }

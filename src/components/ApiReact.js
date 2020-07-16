@@ -43,16 +43,16 @@ class Change extends React.Component {
       <div className='container'>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <h3 className='currency'>Currency Change</h3>
-          <p>USD To YER : {this.state.USDYER}</p>
+          <p className='api'>USD To YER : {this.state.USDYER}</p>
           <br />
-          <p>USD To YEN : {this.state.USDYEN}</p>
+          <p className='api'>USD To YEN : {this.state.USDYEN}</p>
           <br />
-          <p>USD To RYB : {this.state.USDRYB}</p>
+          <p className='api'>USD To RYB : {this.state.USDRYB}</p>
           <br />
-          <p>USD To GBP : {this.state.USDGBP}</p>
+          <p className='api'>USD To GBP : {this.state.USDGBP}</p>
           <br />
-          <p>USD To ILS : {this.state.USDILS}</p>
-          <button>Refresh</button>
+          <p className='api'>USD To ILS : {this.state.USDILS}</p>
+          <button className='btn2'>Refresh</button>
         </form>
       </div>
     );

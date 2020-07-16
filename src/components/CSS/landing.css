@@ -1,17 +1,18 @@
-body {
+/* body {
   background-image: url(../img2.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-color: 0.5;
   background-size: cover;
-}
+} */
+
 .landing {
   text-align: center;
   margin-top: 200px;
 }
 
-h2 {
-  color: black;
+.title {
+  color: rgb(218, 210, 210);
   font-family: 'Bitter', serif;
   font-size: 80px;
   font-weight: normal;
@@ -24,8 +25,23 @@ h2 {
     1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
     1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
     1px 30px 60px rgba(16, 16, 16, 0.4);
-  background-color: rgba(78, 70, 70, 0.2);
+  background-color: rgba(167, 154, 154, 0.2);
   padding: 25px;
+}
+
+.x {
+  color: rgb(218, 210, 210);
+  font-family: 'Bitter', serif;
+  font-size: 80px;
+  font-weight: normal;
+  line-height: 54px;
+  font-weight: 700;
+  text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
+    1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
+    1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191,
+    1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
+    1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
+    1px 30px 60px rgba(16, 16, 16, 0.4);
 }
 
 .first {
@@ -42,4 +58,8 @@ h2 {
   position: relative;
   margin: 20px;
   text-decoration: none;
+}
+
+.first:hover {
+  background-color:  rgb(185, 168, 168);
 }

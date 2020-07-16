@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './CSS/account.css';
 
-var infoarray = [];
-
 class Signin extends React.Component {
   constructor(props) {
     super(props);
@@ -30,12 +28,26 @@ class Signin extends React.Component {
       )
       .then((response) => {
         console.log(response.data);
-        var { email, password, message } = response.data;
+        var {
+          email,
+          password,
+          message,
+          firstname,
+          lastname,
+          age,
+          date,
+        } = response.data;
         this.setState({
           comingE: email,
           comingP: password,
+          firstname: firstname,
+          lastname: lastname,
+          age: age,
+          date: date,
         });
-        alert(message);
+        if (message !== undefined) {
+          alert(message);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -52,7 +64,19 @@ class Signin extends React.Component {
       this.state.comingE === this.state.email &&
       this.state.comingP === this.state.password
     ) {
-      return <Redirect to='/profile' />;
+      return (
+        <Redirect
+          to={{
+            pathname: '/profile',
+            state: {
+              firstname: this.state.firstname,
+              lastname: this.state.lastname,
+              age: this.state.age,
+              date: this.state.date,
+            },
+          }}
+        />
+      );
     }
     return (
       <Fragment>

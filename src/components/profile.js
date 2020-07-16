@@ -8,52 +8,64 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userinfo: [],
+      firstname: '',
+      lastname: '',
+      age: '',
+      date: '',
     };
   }
-  // componentDidMount() {
-  //   const { userinfo } = this.props.location.state;
-  //   // console.log(userinfo);
-  //   this.state.userinfo = userinfo;
-  //   // this.setState({
-  //   //   userinfo: userinfo,
-  //   // });
-  //   console.log(this.state.userinfo);
-  // }
+  componentDidMount() {
+    const { firstname, lastname, age, date } = this.props.location.state;
+    var d;
+    if (date !== undefined) {
+      var ndate = date.split('T');
+      d = ndate[0];
+    }
+
+    this.setState({
+      firstname: firstname,
+      lastname: lastname,
+      age: age,
+      date: d,
+    });
+  }
 
   render() {
-    // var userinfo = this.props.userinfo;
-    // const { userinfo } = this.props.location.state;
-    // this.state.userinfo = userinfo;
-    // console.log(this.state.userinfo);
     return (
       <Fragment>
         <div>
           <div className='left'>
-            <ul>
-              {this.state.userinfo.map((Element, index) => (
-                <li key={index}>{Element} </li>
-              ))}
-            </ul>
             <button id='deposit'>
               <Link to='/deposit' className='btn'>
                 Deposit
               </Link>
             </button>
-            <br></br>
             <button className='btn'>
               <Link to='/withdraw' className='btn'>
                 Withdraw
               </Link>
             </button>
-            <br></br>
             <button id='transfer'>
               <Link to='/transfer' className='btn'>
                 Transfer
               </Link>
             </button>
-            <br></br>
-            <button id='display'>Display</button>
+            <button id='display'>
+              <Link to='/display' className='btn'>
+                Display
+              </Link>
+            </button>
+            <div className='pardiv'>
+              <ul>
+                <h2>User's Info</h2>
+                <li className='in'>
+                  Fisrt Name: &nbsp; {this.state.firstname}
+                </li>
+                <li className='in'>LAst Name: &nbsp; {this.state.lastname}</li>
+                <li className='in'>Age: &nbsp; {this.state.age}</li>
+                <li className='in'>Joining Date: &nbsp; {this.state.date}</li>
+              </ul>
+            </div>
           </div>
           <div className='right'>
             <Change />

@@ -1,4 +1,4 @@
-p {
+.api {
   background-color: rgba(78, 70, 70, 0.2);
   border-radius: 3px;
   padding: 30px 50px;
@@ -6,6 +6,7 @@ p {
   margin-bottom: auto;
   font-family: 'Bitter', serif;
   font-weight: bold;
+  color: rgb(185, 168, 168);
 }
 .currency {
   color: rgb(255, 255, 255);
@@ -14,4 +15,19 @@ p {
   margin: -50px 0 40px 0;
   display: block;
   text-align: center;
+}
+
+.btn2 {
+  color: #fff;
+  background-color: #e74c3c;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
 }

@@ -153,7 +153,25 @@ class SignUp extends React.Component {
 
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
             <Link
-              to={this.state.firstname !== '' ? '/user' : '#'}
+              to={{
+                pathname:
+                  this.state.firstname !== '' &&
+                  this.state.lastname !== '' &&
+                  this.state.idnumber !== '' &&
+                  this.state.age !== '' &&
+                  this.state.email !== '' &&
+                  this.state.gender !== '' &&
+                  this.state.occupation !== '' &&
+                  this.state.password !== '' &&
+                  this.state.phonenumber !== ''
+                    ? '/user'
+                    : '',
+                state: {
+                  firstname: this.state.firstname,
+                  lastname: this.state.lastname,
+                  age: this.state.age,
+                },
+              }}
               className='btn'
             >
               Next
