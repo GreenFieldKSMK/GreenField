@@ -87,6 +87,9 @@ class Display extends React.Component {
             <button className='btn' onClick={this.render.bind(this)}>
               GO
             </button>
+            <button onClick={this.props.history.goBack} className='btn'>
+              Back
+            </button>
           </form>
         </div>
       </Fragment>

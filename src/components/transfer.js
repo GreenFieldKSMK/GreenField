@@ -89,7 +89,10 @@ class Transfer extends React.Component {
             onChange={this.handleChange.bind(this)}
           ></input>
 
-          <button className='btn'>Tranfer</button>
+          <button className='btn'>Confirm</button>
+          <button onClick={this.props.history.goBack} className='btn'>
+            Back
+          </button>
         </form>
       </div>
     );
