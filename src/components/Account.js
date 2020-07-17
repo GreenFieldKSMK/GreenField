@@ -14,6 +14,7 @@ class Account extends React.Component {
       lastname: '',
       age: '',
       date: '',
+      message: '',
     };
   }
   componentDidMount() {
@@ -46,7 +47,12 @@ class Account extends React.Component {
           number: number,
         });
         /////////////////////////////////
-        alert(message);
+        if (message !== undefined) {
+          this.setState({
+            message: message
+          })
+        }
+        // alert(message);
       })
       .catch((err) => {
         console.log(err);
@@ -70,6 +76,19 @@ class Account extends React.Component {
             },
           }}
         />
+      );
+    } else if (this.state.message !== '') {
+      return (
+        <div className='box1'>
+          <h2 className='message'>{this.state.message}</h2>
+          <button
+            className='btn'
+            style={{ marginLeft: '275px' }}
+            onClick={() => window.location.reload(false)}
+          >
+            Return
+          </button>
+        </div>
       );
     }
     return (

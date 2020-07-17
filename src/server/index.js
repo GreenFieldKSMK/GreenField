@@ -163,7 +163,7 @@ app.post('/users', (req, res) => {
           .save()
           .then((result) => {
             console.log('account successfully saved');
-            res.send({ number: creditcard, message: 'welcome' });
+            res.send({ number: creditcard });
           })
           .catch((err) => {
             console.log('failed to save acc info', err);
