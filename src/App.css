@@ -3,3 +3,11 @@
   background-position: center;
   background-repeat: no-repeat;
 } */
+
+html {
+  background: url('./components/img4.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

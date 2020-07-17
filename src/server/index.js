@@ -173,7 +173,7 @@ app.get('/user/:email/:password', (req, res) => {
           date: result[0].date,
           email: result[0].email,
           password: result[0].password,
-          message: 'You can now enter',
+          // message: 'WELCOME',
         });
       } else {
         res.send({ message: 'Incorrect Email/ Password, please re-enter' });
@@ -192,6 +192,7 @@ app.get('/api/change', (req, res) => {
       'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
     )
     .then((result) => {
+      console.log(result.data.quotes);
       res.send(result.data.quotes);
     })
     .catch((err) => {
@@ -199,24 +200,7 @@ app.get('/api/change', (req, res) => {
     });
 });
 
-////////////////////////////////////////////////////////////////
-
-app.put('/user', (req, res) => {
-  var email = req.params.email;
-  var data = req.body;
-  signUp
-    .updateOne({ email }, data)
-    .then((result) => {
-      console.log('in put');
-      res.status(200).send('save new data'); //,data);
-    })
-    .catch((err) => {
-      console.log('in err');
-      res.status(500).send(err);
-    });
-});
-
-//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 app.put('/withdraw', (req, res) => {
   var { creditcard, number } = req.body;
@@ -232,7 +216,7 @@ app.put('/withdraw', (req, res) => {
           account
             .update(
               { creditcard: creditcard },
-              { $set: { total: newTotal, lastwitdraw: withdraw } },
+              { $set: { total: newTotal, lastwitdraw: number } },
               { upsert: true }
             )
             .then((result) => {
@@ -269,7 +253,7 @@ app.put('/deposit', (req, res) => {
         account
           .update(
             { creditcard: creditcard },
-            { $set: { total: newTotal, lastdeposite: deposit } },
+            { $set: { total: newTotal, lastdeposite: number } },
             { upsert: true }
           )
           .then((result) => {

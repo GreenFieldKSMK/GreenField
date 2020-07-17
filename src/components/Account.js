@@ -11,7 +11,32 @@ class Account extends React.Component {
       number: 0,
       creditcard: '',
       total: '',
+      firstname: '',
+      lastname: '',
+      age: '',
+      date: '',
     };
+  }
+  // componentDidMount() {
+  //   const { firstname, lastname, age } = this.props.location.state;
+  //   console.log(this.props.location.state); //{firstname: "Sara ", lastname: "Dahman", age: "24"}
+  //   console.log(firstname, lastname, age); // Sara  Dahman 24
+
+  //   this.setState({
+  //     firstname: firstname,
+  //     lastname: lastname,
+  //     age: age,
+  //   });
+  // }
+
+  sendData() {
+    const { firstname, lastname, age } = this.props.location.state;
+
+    this.setState({
+      firstname: firstname,
+      lastname: lastname,
+      age: age,
+    });
   }
 
   async handleSubmit(e) {
@@ -22,13 +47,11 @@ class Account extends React.Component {
         total: this.state.total,
       })
       .then((result) => {
-        // console.log('account info saved');
         var { number, message } = result.data;
         this.setState({
           number: number,
         });
-        console.log(result.data);
-        console.log(this.state.number);
+        /////////////////////////////////
         alert(message);
       })
       .catch((err) => {
@@ -42,7 +65,18 @@ class Account extends React.Component {
   }
   render() {
     if (this.state.number === this.state.creditcard) {
-      return <Redirect to='/profile' />;
+      return (
+        <Redirect
+          to={{
+            pathname: '/profile',
+            state: {
+              firstname: this.state.firstname,
+              lastname: this.state.lastname,
+              age: this.state.age,
+            },
+          }}
+        />
+      );
     }
     return (
       <div className='box1'>
@@ -63,18 +97,11 @@ class Account extends React.Component {
             value={this.state.total}
             onChange={this.handleChange.bind(this)}
           />
-          <button className='btn' onClick={this.render.bind(this)}>
-            {/* <Link
-              to={
-                this.state.creditcard === this.state.number &&
-                this.state.total !== ''
-                  ? '/profile'
-                  : ''
-              }
-              className='btn'
-            > */}
+          <button
+            className='btn'
+            onClick={(this.render.bind(this), this.sendData.bind(this))}
+          >
             Register
-            {/* </Link> */}
           </button>
         </form>
       </div>

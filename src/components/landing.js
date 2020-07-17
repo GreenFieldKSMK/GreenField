@@ -6,7 +6,13 @@ class Landing extends React.Component {
   render() {
     return (
       <div className='landing'>
-        <h2>eXchange</h2>
+        <h2 className='title'>
+          e
+          <span style={{ color: '#e74c3c' }} className='x'>
+            X
+          </span>
+          change
+        </h2>
         <button className='first'>
           <Link to='/signup' className='first'>
             Sign Up

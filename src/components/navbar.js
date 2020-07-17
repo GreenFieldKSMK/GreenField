@@ -7,9 +7,13 @@ class Navbar extends React.Component {
     return (
       <Fragment>
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li className='nav'>
+            <Link to='/' className='na'>
+              Home
+            </Link>
+          </li>
+          <li className='nav'>About</li>
+          <li className='nav'>Contact</li>
         </ul>
       </Fragment>
     );

@@ -10,6 +10,7 @@ import Profile from './components/profile';
 import Withdraw from './components/Withdraw';
 import Diposit from './components/Deposit';
 import Transfer from './components/transfer';
+import Display from './components/display';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/withdraw' component={Withdraw} />
           <Route exact path='/deposit' component={Diposit} />
           <Route exact path='/transfer' component={Transfer} />
+          <Route exact path='/display' component={Display} />
         </section>
       </div>
     </Router>
