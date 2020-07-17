@@ -42,7 +42,7 @@ class Change extends React.Component {
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <h3 className='currency'>Currency Change</h3>
+          <h3 className='currency'>Currency Prices</h3>
           <p className='api'>USD To YER : {this.state.USDYER}</p>
           <br />
           <p className='api'>USD To YEN : {this.state.USDYEN}</p>

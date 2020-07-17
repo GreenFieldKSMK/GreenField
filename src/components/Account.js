@@ -1,7 +1,6 @@
 import React from 'react';
 import './CSS/account.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 class Account extends React.Component {
@@ -17,17 +16,12 @@ class Account extends React.Component {
       date: '',
     };
   }
-  // componentDidMount() {
-  //   const { firstname, lastname, age } = this.props.location.state;
-  //   console.log(this.props.location.state); //{firstname: "Sara ", lastname: "Dahman", age: "24"}
-  //   console.log(firstname, lastname, age); // Sara  Dahman 24
-
-  //   this.setState({
-  //     firstname: firstname,
-  //     lastname: lastname,
-  //     age: age,
-  //   });
-  // }
+  componentDidMount() {
+    console.log(this.props.location.state);
+    if (this.props.location.state === undefined) {
+      this.props.history.push('/');
+    }
+  }
 
   sendData() {
     const { firstname, lastname, age } = this.props.location.state;

@@ -6,6 +6,7 @@ class Deposit extends React.Component {
   state = {
     number: '',
     creditcard: '',
+    message: '',
   };
 
   handleChange(event) {
@@ -23,8 +24,13 @@ class Deposit extends React.Component {
         creditcard: this.state.creditcard,
       })
       .then((response) => {
-        console.log(response.data);
-        alert(response.data);
+        var msg = response.data;
+        // alert(msg);
+        if (msg !== undefined) {
+          this.setState({
+            message: msg,
+          });
+        }
       })
       .catch((err) => {
         console.log('failed to update');
@@ -37,6 +43,20 @@ class Deposit extends React.Component {
   }
 
   render() {
+    if (this.state.message !== '') {
+      return (
+        <div className='box1'>
+          <h2 className='message'>{this.state.message}</h2>
+          <button
+            className='btn'
+            style={{ marginLeft: '275px' }}
+            onClick={() => window.location.reload(false)}
+          >
+            Return
+          </button>
+        </div>
+      );
+    }
     return (
       <div className='box2'>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -55,7 +75,9 @@ class Deposit extends React.Component {
             value={this.state.number}
             onChange={this.handleChange.bind(this)}
           ></input>
-          <button className='btn'>Confirm</button>
+          <button className='btn' onClick={this.render.bind(this)}>
+            Confirm
+          </button>
         </form>
       </div>
     );

@@ -7,8 +7,7 @@ class Landing extends React.Component {
     return (
       <div className='landing'>
         <h2 className='title'>
-          e
-          <span style={{ color: '#e74c3c' }} className='x'>
+          <span style={{ color: '#e74c3c', fontSize: '113px' }} className='x'>
             X
           </span>
           change
