@@ -5,7 +5,8 @@ const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-//const router = require('./middleware/router');
+const { static } = require('express');
+const path = require('path');
 ////////////////
 
 let app = express();
@@ -14,7 +15,7 @@ var port = process.env.port || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
+app.use(express.static(path.join(__dirname, 'public')));
 //////////////////////////////////////////////////////////////////
 
 app.get('/transfer', (req, res) => {
