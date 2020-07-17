@@ -85,7 +85,7 @@ class Display extends React.Component {
               onChange={this.handleChange.bind(this)}
             ></input>
             <button className='btn' onClick={this.render.bind(this)}>
-              GO
+              Confirm
             </button>
             <button onClick={this.props.history.goBack} className='btn'>
               Back
