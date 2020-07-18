@@ -17,6 +17,7 @@ app.use(cors());
 
 //////////////////////////////////////////////////////////////////
 
+/// used for displaying user's finantial info
 app.get('/profile/:creditcard', (req, res) => {
   var { creditcard } = req.params;
   account
@@ -34,6 +35,7 @@ app.get('/profile/:creditcard', (req, res) => {
     });
 });
 
+//// this promise hell is for transferring  money from one account to another
 app.get('/transfer', (req, res) => {
   let { creditcard, id, amount } = req.query;
   amount = Number(amount);
@@ -106,6 +108,7 @@ app.get('/transfer', (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////
 
+// for the first step of signing up, it sends and email with the credit card number.
 app.post('/user', (req, res) => {
   var credit = Math.floor(Math.random() * 999999999 + 1000000000);
   console.log(credit);
@@ -146,6 +149,7 @@ app.post('/user', (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////
 
+// the second step of siging up after recieving the credit card number.
 app.post('/users', (req, res) => {
   let { creditcard, total } = req.body;
   let accountDoc = new account({
@@ -176,6 +180,8 @@ app.post('/users', (req, res) => {
 });
 
 //////////////////////////////////////////////////////////////////////////////
+// this is for signing-in part
+// it looks for both the email and password
 
 app.get('/user/:email/:password', (req, res) => {
   var { email, password } = req.params;
@@ -202,6 +208,7 @@ app.get('/user/:email/:password', (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////
+// for displaying currency prices
 
 app.get('/api/change', (req, res) => {
   axios
@@ -218,6 +225,7 @@ app.get('/api/change', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////
+// this is for the withdraw part, it looks for the credit card number provided and updates user's info accordingly.
 
 app.put('/withdraw', (req, res) => {
   var { creditcard, number } = req.body;
@@ -256,6 +264,7 @@ app.put('/withdraw', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////
+// this is for the deposite part, it looks for the credit card number provided and updates user's info accordingly.
 
 app.put('/deposit', (req, res) => {
   var { creditcard, number } = req.body;
