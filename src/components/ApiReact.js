@@ -7,7 +7,7 @@ class Change extends React.Component {
     super(props);
     this.state = {
       api:
-        'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b',
+        'http://api.currencylayer.com/live?access_key=8b428808e220c71b4622a3c5b1f7f672',
       USDYER: '',
       USDYEN: '',
       USDRYB: '',

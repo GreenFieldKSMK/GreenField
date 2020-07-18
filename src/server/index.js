@@ -1,13 +1,11 @@
 const express = require('express');
 const axios = require('axios');
 const db = require('../database/index');
-const bodyParser = require('body-parser');
 const signUp = db.signUp;
 const account = db.account;
 const cors = require('cors');
 const sendEmail = require('./../components/EmailConf');
-const { static } = require('express');
-const path = require('path');
+
 ////////////////
 
 let app = express();
@@ -16,7 +14,7 @@ var port = process.env.port || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-// app.use(express.static(path.join(__dirname, 'public')));
+
 //////////////////////////////////////////////////////////////////
 
 app.get('/profile/:creditcard', (req, res) => {
@@ -42,7 +40,6 @@ app.get('/transfer', (req, res) => {
   let reciever;
   let sender;
   let recieverAcc;
-  let senderAcc;
   account
     .findOne({ creditcard })
     .then((result) => {
@@ -209,7 +206,7 @@ app.get('/user/:email/:password', (req, res) => {
 app.get('/api/change', (req, res) => {
   axios
     .get(
-      'http://api.currencylayer.com/live?access_key=056f69d5c345ebe18cb3f2dc73aeda0b'
+      'http://api.currencylayer.com/live?access_key=8b428808e220c71b4622a3c5b1f7f672'
     )
     .then((result) => {
       console.log(result.data.quotes);
