@@ -1,7 +1,6 @@
 import React from 'react';
 import './CSS/account.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 class Account extends React.Component {
@@ -15,19 +14,15 @@ class Account extends React.Component {
       lastname: '',
       age: '',
       date: '',
+      message: '',
     };
   }
-  // componentDidMount() {
-  //   const { firstname, lastname, age } = this.props.location.state;
-  //   console.log(this.props.location.state); //{firstname: "Sara ", lastname: "Dahman", age: "24"}
-  //   console.log(firstname, lastname, age); // Sara  Dahman 24
-
-  //   this.setState({
-  //     firstname: firstname,
-  //     lastname: lastname,
-  //     age: age,
-  //   });
-  // }
+  componentDidMount() {
+    console.log(this.props.location.state);
+    if (this.props.location.state === undefined) {
+      this.props.history.push('/');
+    }
+  }
 
   sendData() {
     const { firstname, lastname, age } = this.props.location.state;
@@ -52,7 +47,12 @@ class Account extends React.Component {
           number: number,
         });
         /////////////////////////////////
-        alert(message);
+        if (message !== undefined) {
+          this.setState({
+            message: message
+          })
+        }
+        // alert(message);
       })
       .catch((err) => {
         console.log(err);
@@ -76,6 +76,19 @@ class Account extends React.Component {
             },
           }}
         />
+      );
+    } else if (this.state.message !== '') {
+      return (
+        <div className='box1'>
+          <h2 className='message'>{this.state.message}</h2>
+          <button
+            className='btn'
+            style={{ marginLeft: '275px' }}
+            onClick={() => window.location.reload(false)}
+          >
+            Return
+          </button>
+        </div>
       );
     }
     return (

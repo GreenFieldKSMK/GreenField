@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './CSS/account.css';
 
@@ -16,6 +15,7 @@ class Signin extends React.Component {
       comingP: 0,
       email: '',
       password: '',
+      message: '',
       userinfo: [],
     };
   }
@@ -46,7 +46,10 @@ class Signin extends React.Component {
           date: date,
         });
         if (message !== undefined) {
-          alert(message);
+          // alert(message);
+          this.setState({
+            message: message,
+          });
         }
       })
       .catch((err) => {
@@ -76,6 +79,19 @@ class Signin extends React.Component {
             },
           }}
         />
+      );
+    } else if (this.state.message !== '') {
+      return (
+        <div className='box1'>
+          <h2 className='message'>{this.state.message}</h2>
+          <button
+            className='btn'
+            style={{ marginLeft: '275px' }}
+            onClick={() => window.location.reload(false)}
+          >
+            Return
+          </button>
+        </div>
       );
     }
     return (
@@ -116,6 +132,7 @@ class Signin extends React.Component {
             </button>
           </form>
         </div>
+        <br></br>
         {/* <Profile userinfo={this.state.userinfo} /> */}
       </Fragment>
     );

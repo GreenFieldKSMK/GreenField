@@ -7,12 +7,13 @@ class Transfer extends React.Component {
     sender: '',
     reciever: '',
     amount: '',
+    message: '',
   };
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
   handleSubmit(event) {
-    let value = this.state.amount;
+    // let value = this.state.amount;
     axios
       .get('http://localhost:3000/transfer', {
         params: {
@@ -21,10 +22,17 @@ class Transfer extends React.Component {
           amount: this.state.amount,
         },
       })
-      .then(function (response) {
+      .then((response) => {
         let msg = response.data;
-        alert(msg);
-        console.log('Request succeeded');
+        console.log(response.data);
+        console.log(msg);
+        // alert(msg);
+        if (msg !== undefined) {
+          this.setState({
+            message: msg,
+          });
+        }
+        console.log(this.state.message);
       })
       .catch(function (error) {
         alert('Something went wrong!');
@@ -39,6 +47,20 @@ class Transfer extends React.Component {
     });
   }
   render() {
+    if (this.state.message !== '') {
+      return (
+        <div className='box1'>
+          <h2 className='message'>{this.state.message}</h2>
+          <button
+            className='btn'
+            style={{ marginLeft: '275px' }}
+            onClick={() => window.location.reload(false)}
+          >
+            Return
+          </button>
+        </div>
+      );
+    }
     return (
       <div className='box3'>
         <h3> Transfer </h3>
@@ -67,7 +89,10 @@ class Transfer extends React.Component {
             onChange={this.handleChange.bind(this)}
           ></input>
 
-          <button className='btn'>Tranfer</button>
+          <button className='btn'>Confirm</button>
+          <button onClick={this.props.history.goBack} className='btn'>
+            Back
+          </button>
         </form>
       </div>
     );

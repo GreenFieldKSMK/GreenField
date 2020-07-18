@@ -9,7 +9,7 @@ ul {
 .nav {
   float: left;
   display: block;
-  color: rgb(185, 168, 168);
+  color: rgb(219, 211, 211);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -19,11 +19,15 @@ ul {
 }
 
 .nav:hover {
-  background-color: #e74c3c;
+  background-color: #1f78ac;
   color: black;
 }
 
 .na {
   text-decoration: none;
   color: rgb(185, 168, 168);
+}
+
+.na:hover{
+  color: black;
 }

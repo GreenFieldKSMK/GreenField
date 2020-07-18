@@ -6,7 +6,7 @@
   margin-bottom: auto;
   font-family: 'Bitter', serif;
   font-weight: bold;
-  color: rgb(185, 168, 168);
+  color: rgb(240, 231, 231);
 }
 .currency {
   color: rgb(255, 255, 255);
@@ -19,7 +19,7 @@
 
 .btn2 {
   color: #fff;
-  background-color: #e74c3c;
+  background-color:  #1f78ac;
   outline: none;
   border: 0;
   color: #fff;
@@ -31,3 +31,5 @@
   position: relative;
   text-decoration: none;
 }
+
+/* #e74c3c */
