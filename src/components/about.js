@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 
+// this is the about component. it includes information about the website
+
 class About extends React.Component {
   render() {
     return (

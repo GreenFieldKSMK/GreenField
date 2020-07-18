@@ -15,6 +15,10 @@ class Withdrawl extends React.Component {
     });
   }
 
+  // it sends the amount we want to withdraw and recieves a message whether the withdraw is successful
+  // or the credit card number doeesn't exist, and changes the state of the message if there was a message
+  // sent from the server.
+
   handleSubmit(event) {
     event.preventDefault();
     var number = Number(this.state.number);
@@ -41,6 +45,7 @@ class Withdrawl extends React.Component {
     });
   }
   render() {
+    // if there was a message it will be displayed when the button is clicked
     if (this.state.message !== '') {
       return (
         <div className='box1'>

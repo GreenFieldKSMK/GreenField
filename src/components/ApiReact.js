@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './CSS/api.css';
 
+/// this component is forthe third party api
 class Change extends React.Component {
   constructor(props) {
     super(props);

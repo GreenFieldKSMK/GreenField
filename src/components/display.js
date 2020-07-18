@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './CSS/withdraw.css';
 
+// this component displays the financial situation of the customer.
 class Display extends React.Component {
   state = {
     creditcard: '',
@@ -12,6 +13,9 @@ class Display extends React.Component {
     comingcredit: '',
     message: '',
   };
+
+  //it sends the credit card number to the server and get user info if it finds them
+  // and changes the state if the info was found in the database, else the values will remain as empty string.
 
   handlesubmit(e) {
     e.preventDefault();
@@ -45,6 +49,10 @@ class Display extends React.Component {
     });
   }
   render() {
+    // if the number provided and the number recieved from the database are the same
+    // it will move us to '/userinfo' component which dusplays the info, it also sends the info to be displayed
+    // else if there was a message sent from the sever it will display it when the button is clicked
+
     var credit = Number(this.state.creditcard);
     if (this.state.comingcredit === credit) {
       return (

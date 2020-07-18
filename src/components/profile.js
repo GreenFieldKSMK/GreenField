@@ -4,6 +4,8 @@ import './CSS/profile.css';
 import { Link } from 'react-router-dom';
 import Change from './ApiReact';
 
+// this is the profile component that displayes both the user's info ,
+//which is recieved from the either the sign in or sign up components, and the api component
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +16,11 @@ class Profile extends React.Component {
       date: '',
     };
   }
+
+  // the function extracts the recieved data if there any
+  // if there isn't any recived data it will send the user to the main page if the user tries to access '/profile'
+  // directly without moving step by step.
+
   componentDidMount() {
     if (this.props.location.state !== undefined) {
       const { firstname, lastname, age, date } = this.props.location.state;

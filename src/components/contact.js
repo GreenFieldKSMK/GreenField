@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+// it inclcudes the contact emails fot the 'contact us' part of the nav bar.
 class Contact extends React.Component {
   render() {
     return (

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './CSS/withdraw.css';
 
+// the transfer componenet which allows the user to send money from one account to another.
 class Transfer extends React.Component {
   state = {
     sender: '',
@@ -12,6 +13,9 @@ class Transfer extends React.Component {
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+  // it sends the user's creditcard number as well as the reciever ID number
+  // and it recieves a message, then it sets the state
+
   handleSubmit(event) {
     // let value = this.state.amount;
     axios
@@ -47,6 +51,7 @@ class Transfer extends React.Component {
     });
   }
   render() {
+    // if there was a recieved message from the server, it will be displayed when the buttom is clicked.
     if (this.state.message !== '') {
       return (
         <div className='box1'>

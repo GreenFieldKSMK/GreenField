@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/landing.css';
 
+// this is the main page.
 class Landing extends React.Component {
   render() {
     return (
