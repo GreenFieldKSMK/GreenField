@@ -15,19 +15,23 @@ class Profile extends React.Component {
     };
   }
   componentDidMount() {
-    const { firstname, lastname, age, date } = this.props.location.state;
-    var d;
-    if (date !== undefined) {
-      var ndate = date.split('T');
-      d = ndate[0];
-    }
+    if (this.props.location.state !== undefined) {
+      const { firstname, lastname, age, date } = this.props.location.state;
+      var d;
+      if (date !== undefined) {
+        var ndate = date.split('T');
+        d = ndate[0];
+      }
 
-    this.setState({
-      firstname: firstname,
-      lastname: lastname,
-      age: age,
-      date: d,
-    });
+      this.setState({
+        firstname: firstname,
+        lastname: lastname,
+        age: age,
+        date: d,
+      });
+    } else {
+      this.props.history.push('/');
+    }
   }
 
   render() {

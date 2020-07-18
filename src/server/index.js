@@ -16,8 +16,25 @@ var port = process.env.port || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 //////////////////////////////////////////////////////////////////
+
+app.get('/profile/:creditcard', (req, res) => {
+  var { creditcard } = req.params;
+  account
+    .findOne({ creditcard: creditcard })
+    .then((result) => {
+      if (result !== null) {
+        res.send(result);
+      } else {
+        res.send({ message: 'Invalid Credit Card!' });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log('error in finding for display======>', err);
+    });
+});
 
 app.get('/transfer', (req, res) => {
   let { creditcard, id, amount } = req.query;
@@ -82,7 +99,7 @@ app.get('/transfer', (req, res) => {
             console.log(err, 'Failed to find reciever ID!');
           });
       } else {
-        res.send('Invalid sender credit card!');
+        res.send('Invalid credit card!');
       }
     })
     .catch((err) => {
@@ -146,7 +163,7 @@ app.post('/users', (req, res) => {
           .save()
           .then((result) => {
             console.log('account successfully saved');
-            res.send({ number: creditcard, message: 'welcome' });
+            res.send({ number: creditcard });
           })
           .catch((err) => {
             console.log('failed to save acc info', err);
@@ -230,10 +247,10 @@ app.put('/withdraw', (req, res) => {
               console.log('cannot update ==========>', err);
             });
         } else {
-          res.send(`Insufficiant Expenses! Cannot withdraw ${number}`);
+          res.send(`Insufficiant Balance! Cannot withdraw ${number}`);
         }
       } else {
-        res.send('Cannot Find the number provided');
+        res.send('Invalid Credit card');
       }
     })
     .catch((err) => {
@@ -267,7 +284,7 @@ app.put('/deposit', (req, res) => {
             console.log('cannot update ==========>', err);
           });
       } else {
-        res.send('Cannot Find the number provided');
+        res.send('Invalid Credit Card');
       }
     })
     .catch((err) => {

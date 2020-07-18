@@ -46,7 +46,7 @@
 
 .first {
   color: #fff;
-  background-color: #e74c3c;
+  background-color: #1f78ac;
   outline: none;
   border: 0;
   color: #fff;
@@ -61,5 +61,5 @@
 }
 
 .first:hover {
-  background-color:  rgb(185, 168, 168);
+  background-color: rgb(185, 168, 168);
 }
