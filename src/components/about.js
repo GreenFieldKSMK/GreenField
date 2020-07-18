@@ -6,9 +6,9 @@ class About extends React.Component {
       <Fragment>
         <div className='box1'>
           <p className='about'>
-            Welcome dear customer, Xchange is designed to make your finaccial
+            Welcome dear customer, Xchange is designed to make your financial
             activities easy and effortless. We deliver multiple services to our
-            beloved customers, such as the ability to deposite, withdraw, and
+            beloved customers, such as the ability to deposit, withdraw, and
             even transfer money from one account to another, so feel free to
             join our amazing and wonderful family.
           </p>
