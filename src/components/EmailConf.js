@@ -13,11 +13,11 @@ function sendEmail(email, number) {
     // send mail with defined transport object
     transporter.sendMail(
       {
-        from: '"ExChange" <bankexchange4@gmail.com>', // sender address
+        from: '"Xchange" <bankexchange4@gmail.com>', // sender address
         to: email, // list of receivers
         subject: 'Credit card Number ✔', // Subject line
-        text: 'Hello world?', // plain text body
-        html: `<h2>Hello world?</h2><p>This is your credit card number : </p> <p>${number}<p/>`, // html body
+        text: 'Dear customer', // plain text body
+        html: `<h2>Dear customer</h2><p>This is your credit card number : </p> <p>${number}<p/>`, // html body
       },
       (err, info) => {
         if (err) {

@@ -58,3 +58,17 @@ input:focus {
   display: block;
   text-align: center;
 }
+
+.about {
+  color: rgb(209, 193, 193);
+  font-size: 18px;
+  display: block;
+  text-align: left;
+}
+
+.contact {
+  color: rgb(209, 193, 193);
+  font-size: 20px;
+  display: block;
+  text-align: center;
+}

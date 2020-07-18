@@ -12,6 +12,8 @@ import Diposit from './components/Deposit';
 import Transfer from './components/transfer';
 import Display from './components/display';
 import Info from './components/info';
+import About from './components/about';
+import Contact from './components/contact';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route exact path='/transfer' component={Transfer} />
           <Route exact path='/display' component={Display} />
           <Route exact path='/userinfo' component={Info} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/contact-us' component={Contact} />
         </section>
       </div>
     </Router>
