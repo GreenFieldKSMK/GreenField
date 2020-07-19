@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
 function sendEmail(email, number) {
   console.log('Number:   ' + number);
+
+  // the function that sends the email
+
   nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',

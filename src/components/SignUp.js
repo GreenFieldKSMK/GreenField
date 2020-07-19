@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './CSS/SignUp.css';
 import { Link } from 'react-router-dom';
+
+// this is the sigup component which saves the user's info the they sign up
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -152,6 +154,7 @@ class SignUp extends React.Component {
           <br />
 
           <button className='btn' onClick={this.handleSubmit.bind(this)}>
+            {/* here th links sends the user's firstname, lastname, and age to the account component in order to be displayed in the profile */}
             <Link
               to={{
                 pathname:

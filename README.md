@@ -12,3 +12,7 @@ Mohammed Hourani
 Khaled Ali
 Sara Dahman
 Karam Qaoud
+
+////////////////
+run npm start to start the react server.
+and npm run server to run our server.

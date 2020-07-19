@@ -2,6 +2,7 @@ import React from 'react';
 import './CSS/withdraw.css';
 import axios from 'axios';
 
+// this is the deposite component.
 class Deposit extends React.Component {
   state = {
     number: '',
@@ -14,6 +15,10 @@ class Deposit extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
+
+  // it sends the amount we want to deposit and recieves a message whether the deposit is successful
+  // or the credit card number doeesn't exist, and changes the state of the message if there was a message
+  // sent from the server.
 
   handleSubmit(event) {
     event.preventDefault();
@@ -43,6 +48,8 @@ class Deposit extends React.Component {
   }
 
   render() {
+    // if there was a message it will be displayed when the button is clicked
+
     if (this.state.message !== '') {
       return (
         <div className='box1'>

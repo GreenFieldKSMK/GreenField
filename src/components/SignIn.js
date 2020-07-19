@@ -19,7 +19,10 @@ class Signin extends React.Component {
       userinfo: [],
     };
   }
-
+  // it sends a get request to the server with both the email and password
+  // and gets the user's info if the server found both the email and password
+  // then it sets the state with the recied data.
+  // the  comingE & comingP , are the email and password recieved from the server.
   handleSubmit(e) {
     e.preventDefault();
     axios
@@ -63,6 +66,9 @@ class Signin extends React.Component {
   }
 
   render() {
+    // here iit checks if the values of  comingE comingP are equal to the email and password provided by the user
+    // if they are, it will send the user to the '/profile' page.
+    // if there was a message sent from the server side it will be displayed when the buttom is clicked.
     if (
       this.state.comingE === this.state.email &&
       this.state.comingP === this.state.password

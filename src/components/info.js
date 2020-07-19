@@ -1,6 +1,8 @@
 import React from 'react';
 import './CSS/withdraw.css';
 
+// this is the component which 'display' takes us to
+// it recieves the data sent from 'display' component and views it to the customer.
 class Info extends React.Component {
   state = {
     total: '',
@@ -8,6 +10,7 @@ class Info extends React.Component {
     lastdeposit: '',
   };
 
+  // it rxtracts the data that was recieved and chnges the state.
   componentDidMount() {
     var total = this.props.location.state.total;
     var lastwithdraw = this.props.location.state.lastwithdraw;
